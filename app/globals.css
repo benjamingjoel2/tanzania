@@ -1,0 +1,179 @@
+@import "tailwindcss";
+
+@theme {
+  /* Tanzania palette */
+  --color-snow: #f8f6f1;
+  --color-sand: #ede6d8;
+  --color-sand-deep: #e1d6c2;
+  --color-savanna: #c69a3d;
+  --color-savanna-light: #ddb968;
+  --color-savanna-ink: #85601c; /* gold that passes AA as text on light backgrounds */
+  --color-ocean: #1c8c93;
+  --color-ocean-ink: #136a70;
+  --color-ocean-light: #9fd6d6;
+  --color-acacia: #2e4637;
+  --color-acacia-deep: #1f3127;
+  --color-charcoal: #24211e;
+  --color-stone: #6b645c;
+  --color-line: #ddd4c4;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+
+  --text-display: clamp(2.9rem, 7vw, 6.5rem);
+  --text-display--line-height: 0.98;
+  --text-h1: clamp(2.5rem, 5.5vw, 5rem);
+  --text-h1--line-height: 1.02;
+  --text-h2: clamp(2.1rem, 4vw, 3.6rem);
+  --text-h2--line-height: 1.06;
+  --text-h3: clamp(1.4rem, 2vw, 1.75rem);
+  --text-h3--line-height: 1.2;
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --animate-marquee: marquee 40s linear infinite;
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+  body {
+    background: var(--color-snow);
+    color: var(--color-charcoal);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  ::selection {
+    background: var(--color-savanna);
+    color: var(--color-charcoal);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-savanna);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+@utility container-x {
+  width: 100%;
+  max-width: 1360px;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+  @media (width >= 48rem) {
+    padding-inline: 2.5rem;
+  }
+}
+
+@utility section-y {
+  padding-block: 5rem;
+  @media (width >= 48rem) {
+    padding-block: 8rem;
+  }
+}
+
+@utility eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Long-form article typography (blog + MDX) */
+@utility prose-uhuru {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: var(--color-charcoal);
+  & > * + * {
+    margin-top: 1.25em;
+  }
+  & h2 {
+    font-size: 2rem;
+    line-height: 1.15;
+    margin-top: 2.2em;
+  }
+  & h3 {
+    font-size: 1.45rem;
+    margin-top: 1.8em;
+  }
+  & a {
+    color: var(--color-ocean-ink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  & ul {
+    list-style: disc;
+    padding-left: 1.25em;
+  }
+  & ol {
+    list-style: decimal;
+    padding-left: 1.25em;
+  }
+  & li + li {
+    margin-top: 0.4em;
+  }
+  & blockquote {
+    border-left: 3px solid var(--color-savanna);
+    padding-left: 1.25em;
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    line-height: 1.4;
+    font-style: italic;
+  }
+  & strong {
+    font-weight: 600;
+  }
+  & table {
+    width: 100%;
+    font-size: 0.95rem;
+    border-collapse: collapse;
+  }
+  & th,
+  & td {
+    border-bottom: 1px solid var(--color-line);
+    padding: 0.6em 0.5em;
+    text-align: left;
+  }
+}
