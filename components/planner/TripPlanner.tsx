@@ -82,7 +82,6 @@ export function TripPlanner({
     // consent is never persisted
     delete values.consent;
     reset(values as PlannerValues);
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- one-off restore from localStorage after hydration
     if (saved && !prefill) setStep(Math.min(Math.max(saved.step, 0), steps.length - 1));
     setRestored(true);
   }, [prefill, reset]);
@@ -95,7 +94,8 @@ export function TripPlanner({
       clearTimeout(t);
       t = setTimeout(() => {
         try {
-          const { consent: _consent, ...values } = getValues();
+          const values: Partial<PlannerValues> = { ...getValues() };
+          delete values.consent;
           localStorage.setItem(STORAGE_KEY, JSON.stringify({ step, values } satisfies Saved));
         } catch {
           /* storage unavailable */
@@ -103,6 +103,7 @@ export function TripPlanner({
       }, 300);
     };
     save();
+    // eslint-disable-next-line react-hooks/incompatible-library -- subscription callback, not a render value
     const sub = watch(save);
     return () => {
       clearTimeout(t);
