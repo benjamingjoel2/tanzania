@@ -32,7 +32,7 @@ function StayGroup({ group, onActive }: { group: Group; onActive: (t: StayType) 
   }, [inView, group.type, onActive]);
   return (
     <div ref={ref} id={`stay-${group.type}`} className="scroll-mt-28 space-y-2.5">
-      <p className="eyebrow pb-2 text-white/70 lg:hidden">{group.label}</p>
+      <p className="eyebrow pb-2 text-white/90 lg:hidden">{group.label}</p>
       {group.stays.map((s) => (
         <Link key={s.slug} href={`/stays/${s.slug}`} className="group block">
           <div className="relative aspect-[4/3] overflow-hidden">
@@ -40,7 +40,7 @@ function StayGroup({ group, onActive }: { group: Group; onActive: (t: StayType) 
           </div>
           <div className="flex flex-wrap items-baseline justify-between gap-2 py-4">
             <h3 className="text-xl tracking-tight">{s.name}</h3>
-            <p className="text-sm text-white/75">
+            <p className="text-sm text-white/90">
               From <Price usd={s.pricePerNight} className="text-white" /> per person · night
             </p>
           </div>
@@ -65,11 +65,13 @@ export function StaysIndex({ groups }: { groups: Group[] }) {
       <div className="container-x grid gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-5">
           <div className="lg:sticky lg:top-28">
-            <EyebrowLabel tone="dark">Where you&apos;ll stay</EyebrowLabel>
+            <EyebrowLabel tone="dark" className="text-white/85">
+              Where you&apos;ll stay
+            </EyebrowLabel>
             <h2 id="stays-heading" className="mt-5 text-h2">
               Camps, lodges and hideaways
             </h2>
-            <p className="mt-6 max-w-md text-lead text-white/80">
+            <p className="mt-6 max-w-md text-lead text-white/90">
               Chosen for their setting, their guiding and the way they treat their people.
             </p>
             <ul className="mt-10 hidden border-t border-white/25 lg:block">
@@ -79,7 +81,7 @@ export function StaysIndex({ groups }: { groups: Group[] }) {
                     href={`#stay-${g.type}`}
                     className={cn(
                       "flex h-16 items-center justify-between gap-4 uppercase tracking-[0.08em] transition-all duration-500",
-                      active === g.type ? "translate-x-0 opacity-100" : "opacity-40 hover:opacity-70",
+                      active === g.type ? "text-white" : "text-white/75 hover:text-white",
                     )}
                   >
                     <span className={cn("transition-transform duration-500", active === g.type && "translate-x-7")}>{g.label}</span>
@@ -88,7 +90,7 @@ export function StaysIndex({ groups }: { groups: Group[] }) {
                 </li>
               ))}
             </ul>
-            <p className="mt-6 hidden max-w-sm text-sm text-white/70 lg:block">{groups.find((g) => g.type === active)?.blurb}</p>
+            <p className="mt-6 hidden max-w-sm text-sm text-white/90 lg:block">{groups.find((g) => g.type === active)?.blurb}</p>
             <ButtonLink href="/stays" variant="outline-light" className="mt-10" arrow>
               All stays
             </ButtonLink>

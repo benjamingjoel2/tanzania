@@ -4,7 +4,7 @@ import { MONTHS, cn } from "@/lib/utils";
 
 const ratingStyles: Record<MonthInfo["rating"], { label: string; className: string }> = {
   peak: { label: "Excellent", className: "bg-acacia text-white" },
-  good: { label: "Good", className: "bg-acacia/45 text-charcoal" },
+  good: { label: "Good", className: "bg-acacia/20 text-charcoal" },
   fair: { label: "Variable", className: "bg-sand-deep text-charcoal" },
 };
 
@@ -20,7 +20,7 @@ export function MonthGrid({ months, caption }: { months: MonthInfo[]; caption?: 
             <li key={m.month} className="group relative flex flex-col overflow-hidden rounded-none ring-1 ring-line">
               <div className={cn("flex flex-col px-3 py-2.5", r.className)}>
                 <span className="font-display text-lg">{MONTHS[m.month - 1]}</span>
-                <span className="text-[0.6rem] font-semibold tracking-wider uppercase opacity-80">{r.label}</span>
+                <span className="text-[0.65rem] font-semibold tracking-wider uppercase">{r.label}</span>
               </div>
               <div className="flex min-h-7 flex-wrap gap-1 bg-white px-3 py-2">
                 {m.tags

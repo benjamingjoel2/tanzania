@@ -33,7 +33,7 @@ export function MapPlaceholder({ stops, title = "Route map" }: { stops: string[]
             <MapPin aria-hidden className="size-3.5 text-savanna-ink" /> {s}
           </span>
         ))}
-        <span className="ml-auto text-xs text-stone/80">Map placeholder</span>
+        <span className="ml-auto text-xs text-stone">Map placeholder</span>
       </figcaption>
     </figure>
   );

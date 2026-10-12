@@ -43,7 +43,7 @@ export function CookieBanner() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 24 }}
           transition={{ duration: 0.5, delay: 1.5 }}
-          className="fixed bottom-4 left-4 z-40 max-w-sm border border-line bg-snow p-5 pr-12 text-sm shadow-xl md:bottom-6 md:left-6"
+          className="fixed inset-x-3 bottom-3 z-40 border border-line bg-snow p-5 pr-12 text-sm shadow-xl sm:inset-x-auto sm:left-4 sm:max-w-sm md:bottom-6 md:left-6"
         >
           <button type="button" onClick={() => choose("declined")} aria-label="Close cookie notice" className="absolute top-3 right-3 grid size-8 place-items-center">
             <X className="size-4" />

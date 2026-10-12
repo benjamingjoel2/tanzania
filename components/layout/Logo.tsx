@@ -7,7 +7,7 @@ export function Logo({ className, tone = "dark" }: { className?: string; tone?: 
   return (
     <Link
       href="/"
-      aria-label={`${siteConfig.name}, home`}
+      aria-label={`${siteConfig.name} home`}
       className={cn("group flex items-center gap-2.5", tone === "light" ? "text-white" : "text-charcoal", className)}
     >
       <svg viewBox="0 0 32 32" aria-hidden className="size-8 shrink-0">

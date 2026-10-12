@@ -67,10 +67,24 @@ export function SplitReveal({
   animateOnMount?: boolean;
 }) {
   const words = text.split(" ");
+  if (animateOnMount) {
+    // Above the fold: animate with CSS so the text paints without waiting for JS.
+    const Plain = Tag;
+    return (
+      <Plain className={className} aria-label={text}>
+        {words.map((w, i) => (
+          <span key={`${w}-${i}`} aria-hidden className="inline-block overflow-hidden pb-[0.08em] align-bottom">
+            <span className="inline-block animate-word-rise" style={{ animationDelay: `${delay + i * 0.06}s` }}>
+              {w}
+              {i < words.length - 1 ? "\u00a0" : ""}
+            </span>
+          </span>
+        ))}
+      </Plain>
+    );
+  }
   const MotionTag = motion[Tag];
-  const trigger = animateOnMount
-    ? { initial: "hidden", animate: "show" }
-    : { initial: "hidden", whileInView: "show", viewport: { once: true, margin: "0px 0px -10% 0px" } };
+  const trigger = { initial: "hidden", whileInView: "show", viewport: { once: true, margin: "0px 0px -10% 0px" } };
   return (
     <MotionTag
       className={className}

@@ -38,7 +38,7 @@ export function Footer() {
 
           <div className="grid gap-10 sm:grid-cols-2 lg:col-span-5">
             <div>
-              <h2 className="eyebrow mb-5 text-white/50">Talk to a specialist</h2>
+              <h2 className="eyebrow mb-5 text-white/65">Talk to a specialist</h2>
               <ul className="space-y-3">
                 <li>
                   <a href={`mailto:${contact.email}`} className="text-white hover:text-savanna-light">
@@ -57,10 +57,10 @@ export function Footer() {
                 </li>
                 <li>{contact.address}</li>
               </ul>
-              <p className="mt-5 text-sm text-white/50">{contact.hours}</p>
+              <p className="mt-5 text-sm text-white/65">{contact.hours}</p>
             </div>
             <div>
-              <h2 className="eyebrow mb-5 text-white/50">Uhuru Journeys</h2>
+              <h2 className="eyebrow mb-5 text-white/65">Uhuru Journeys</h2>
               <ul className="space-y-3">
                 {footerNav.company.map((l) => (
                   <li key={l.href}>
@@ -90,25 +90,32 @@ export function Footer() {
         </div>
 
         <div className="mt-16">
-          <p className="eyebrow mb-4 text-white/40">Memberships & partners (placeholders)</p>
+          <p className="eyebrow mb-4 text-white/65">Memberships & partners (placeholders)</p>
           <ul className="flex flex-wrap gap-3">
             {memberships.map((m) => (
               <li key={m.short} title={m.name} className="flex items-center gap-3 border border-dashed border-white/25 px-4 py-2.5">
                 <span className="text-lg tracking-tight text-white">{m.short}</span>
-                <span className="text-xs leading-tight text-white/50">{m.note}</span>
+                <span className="text-xs leading-tight text-white/65">{m.note}</span>
               </li>
             ))}
           </ul>
         </div>
 
-        <p
-          aria-hidden
-          className="mt-auto pt-16 text-[clamp(4.5rem,21vw,20rem)] leading-[0.8] tracking-[-0.065em] whitespace-nowrap text-white/[0.07] select-none"
-        >
-          uhuru journeys
-        </p>
+        <div className="mt-auto pt-16">
+          {/* Decorative watermark, drawn as SVG so it isn't treated as body text. */}
+          <svg aria-hidden viewBox="0 0 1000 190" className="w-full text-white/[0.07] md:hidden">
+            <text x="0" y="165" fontSize="235" textLength="1000" lengthAdjust="spacingAndGlyphs" fill="currentColor" letterSpacing="-12">
+              uhuru
+            </text>
+          </svg>
+          <svg aria-hidden viewBox="0 0 1000 120" className="hidden w-full text-white/[0.07] md:block">
+            <text x="0" y="100" fontSize="135" textLength="1000" lengthAdjust="spacingAndGlyphs" fill="currentColor">
+              uhuru journeys
+            </text>
+          </svg>
+        </div>
 
-        <div className="mt-6 flex flex-col gap-4 border-t border-white/10 pt-6 text-sm text-white/50 md:flex-row md:items-center md:justify-between">
+        <div className="mt-6 flex flex-col gap-4 border-t border-white/10 pt-6 text-sm text-white/65 md:flex-row md:items-center md:justify-between">
           <p>
             © <CopyrightYear /> {siteConfig.name}. All rights reserved.
           </p>
