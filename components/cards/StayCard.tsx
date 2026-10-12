@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 export function StayCard({ stay, className }: { stay: Stay; className?: string }) {
   return (
     <Link href={`/stays/${stay.slug}`} className={cn("group block", className)}>
-      <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-sand">
+      <div className="relative aspect-[4/3] overflow-hidden rounded-none bg-sand">
         <SmartImage
           image={stay.image}
           fill

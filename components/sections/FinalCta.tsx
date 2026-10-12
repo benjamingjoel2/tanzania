@@ -1,11 +1,16 @@
+"use client";
+
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import { homeContent } from "@/data/home";
 import { whatsappLink } from "@/config/site";
-import { SmartImage } from "@/components/ui/SmartImage";
-import { Reveal } from "@/components/ui/Reveal";
+import { Reveal, SplitReveal } from "@/components/ui/Motion";
 import { OpenPlannerButton } from "@/components/ui/OpenPlannerButton";
 import { SocialIcon } from "@/components/ui/SocialIcon";
 import { buttonClasses } from "@/components/ui/Button";
+import { EyebrowLabel } from "@/components/ui/SectionHeading";
 
+/** Closing call to action: a circle of colour grows behind the text as it scrolls into view. */
 export function FinalCta({
   title = homeContent.finalCta.title,
   body = homeContent.finalCta.body,
@@ -13,15 +18,24 @@ export function FinalCta({
   title?: string;
   body?: string;
 }) {
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "center center"] });
+  const scale = useTransform(scrollYProgress, [0, 1], [0.05, 1]);
+
   return (
-    <section className="relative isolate overflow-hidden bg-charcoal text-white">
-      <SmartImage image={homeContent.finalCta.image} fill sizes="100vw" className="-z-10 object-cover opacity-60" />
-      <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-black/70 to-black/20" />
-      <div className="container-x section-y text-center">
-        <Reveal className="mx-auto max-w-3xl">
-          <p className="eyebrow mb-4 text-savanna-light">Your journey starts here</p>
-          <h2 className="text-h1">{title}</h2>
-          <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-white/85">{body}</p>
+    <section ref={ref} className="relative isolate grid min-h-[80svh] place-items-center overflow-hidden bg-acacia-deep text-white">
+      <motion.div
+        aria-hidden
+        style={{ scale }}
+        className="absolute top-1/2 left-1/2 -z-10 aspect-square w-[160vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-acacia md:w-[120vw]"
+      />
+      <div className="container-x py-24 text-center">
+        <EyebrowLabel tone="dark" className="mb-6 justify-center">
+          Your journey starts here
+        </EyebrowLabel>
+        <SplitReveal text={title} className="mx-auto max-w-4xl text-h1" />
+        <Reveal>
+          <p className="mx-auto mt-7 max-w-2xl text-lead text-white/80">{body}</p>
           <div className="mt-10 flex flex-wrap justify-center gap-3">
             <OpenPlannerButton size="lg" arrow>
               Plan your journey

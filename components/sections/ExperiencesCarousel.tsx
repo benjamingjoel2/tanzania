@@ -19,6 +19,31 @@ export function ExperiencesCarousel({
   intro?: string;
 }) {
   const track = useRef<HTMLUListElement>(null);
+  const drag = useRef<{ x: number; left: number; moved: boolean } | null>(null);
+
+  // Mouse drag-to-scroll (touch already scrolls natively).
+  const onPointerDown = (e: React.PointerEvent<HTMLUListElement>) => {
+    if (e.pointerType !== "mouse" || !track.current) return;
+    drag.current = { x: e.clientX, left: track.current.scrollLeft, moved: false };
+    track.current.style.scrollSnapType = "none";
+  };
+  const onPointerMove = (e: React.PointerEvent<HTMLUListElement>) => {
+    if (!drag.current || !track.current) return;
+    const dx = e.clientX - drag.current.x;
+    if (Math.abs(dx) > 4) drag.current.moved = true;
+    track.current.scrollLeft = drag.current.left - dx;
+  };
+  const endDrag = () => {
+    if (!track.current) return;
+    track.current.style.scrollSnapType = "";
+    setTimeout(() => (drag.current = null), 0);
+  };
+  const onClickCapture = (e: React.MouseEvent) => {
+    if (drag.current?.moved) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  };
   const scroll = (dir: 1 | -1) => {
     const el = track.current;
     if (!el) return;
@@ -38,7 +63,7 @@ export function ExperiencesCarousel({
                 type="button"
                 onClick={() => scroll(-1)}
                 aria-label="Previous experiences"
-                className="grid size-12 place-items-center rounded-full border border-charcoal/20 transition-colors hover:bg-charcoal hover:text-snow"
+                className="grid size-12 place-items-center rounded-full border border-dashed border-charcoal transition-colors hover:border-solid hover:bg-charcoal hover:text-snow"
               >
                 <ArrowLeft className="size-5" />
               </button>
@@ -46,7 +71,7 @@ export function ExperiencesCarousel({
                 type="button"
                 onClick={() => scroll(1)}
                 aria-label="Next experiences"
-                className="grid size-12 place-items-center rounded-full border border-charcoal/20 transition-colors hover:bg-charcoal hover:text-snow"
+                className="grid size-12 place-items-center rounded-full border border-dashed border-charcoal transition-colors hover:border-solid hover:bg-charcoal hover:text-snow"
               >
                 <ArrowRight className="size-5" />
               </button>
@@ -58,10 +83,16 @@ export function ExperiencesCarousel({
         />
         <ul
           ref={track}
-          className="no-scrollbar -mx-5 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-px-5 px-5 pb-2 md:-mx-10 md:scroll-px-10 md:px-10"
+          onPointerDown={onPointerDown}
+          onPointerMove={onPointerMove}
+          onPointerUp={endDrag}
+          onPointerLeave={endDrag}
+          onClickCapture={onClickCapture}
+          onDragStart={(e) => e.preventDefault()}
+          className="no-scrollbar -mx-5 flex cursor-grab snap-x snap-mandatory gap-2.5 overflow-x-auto scroll-px-5 px-5 pb-2 select-none active:cursor-grabbing md:-mx-10 md:scroll-px-10 md:px-10 xl:-mx-16 xl:scroll-px-16 xl:px-16"
         >
           {experiences.map((e) => (
-            <li key={e.slug} className="w-[78%] shrink-0 snap-start sm:w-[45%] lg:w-[calc(25%-15px)]">
+            <li key={e.slug} className="w-[78%] shrink-0 snap-start sm:w-[42%] lg:w-[27%] xl:w-[23%]">
               <ExperienceCard experience={e} />
             </li>
           ))}

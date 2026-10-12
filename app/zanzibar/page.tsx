@@ -75,7 +75,7 @@ export default function ZanzibarPage() {
         <RevealGroup className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {z.beaches.map((b) => (
             <RevealItem key={b.name}>
-              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-ocean/20">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-none bg-ocean/20">
                 <SmartImage image={b.image} fill sizes="(min-width: 1024px) 25vw, 50vw" className="object-cover" />
               </div>
               <p className="eyebrow mt-5 text-ocean-ink">{b.area}</p>
@@ -88,7 +88,7 @@ export default function ZanzibarPage() {
 
       <section id="stone-town" className="scroll-mt-32 bg-[#0f4d51] text-white">
         <div className="container-x grid items-center gap-12 py-20 md:py-28 lg:grid-cols-2">
-          <Reveal className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-ocean lg:aspect-[4/4.5]">
+          <Reveal className="relative aspect-[4/5] overflow-hidden rounded-none bg-ocean lg:aspect-[4/4.5]">
             <SmartImage image={z.stoneTown.image} fill sizes="(min-width: 1024px) 45vw, 100vw" className="object-cover" />
           </Reveal>
           <Reveal delay={0.1}>
@@ -125,7 +125,7 @@ export default function ZanzibarPage() {
       >
         <RevealGroup className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {z.addOns.map((a) => (
-            <RevealItem key={a.title} className="flex flex-col rounded-2xl bg-white p-7 ring-1 ring-line">
+            <RevealItem key={a.title} className="flex flex-col rounded-none bg-white p-7 ring-1 ring-line">
               <p className="eyebrow text-ocean-ink">{a.nights} nights</p>
               <h3 className="mt-3 font-display text-2xl">{a.title}</h3>
               <p className="mt-3 flex-1 text-stone">{a.body}</p>

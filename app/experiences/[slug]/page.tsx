@@ -56,7 +56,7 @@ export default async function ExperiencePage({ params }: PageProps<"/experiences
             ))}
           </Reveal>
           <Reveal delay={0.1} className="lg:col-span-4 lg:col-start-9">
-            <aside className="rounded-2xl bg-white p-7 ring-1 ring-line lg:sticky lg:top-28">
+            <aside className="rounded-none bg-white p-7 ring-1 ring-line lg:sticky lg:top-28">
               <dl className="space-y-5">
                 <div className="flex gap-3">
                   <CalendarDays aria-hidden className="mt-0.5 size-5 text-savanna-ink" />

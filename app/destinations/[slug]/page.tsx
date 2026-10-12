@@ -86,7 +86,7 @@ export default async function DestinationPage({ params }: PageProps<"/destinatio
             ))}
           </Reveal>
           <Reveal delay={0.1} className="lg:col-span-4 lg:col-start-9">
-            <aside className="rounded-2xl bg-white p-7 ring-1 ring-line lg:sticky lg:top-36">
+            <aside className="rounded-none bg-white p-7 ring-1 ring-line lg:sticky lg:top-36">
               <dl className="space-y-5">
                 <div className="flex gap-3">
                   <MapPin aria-hidden className="mt-0.5 size-5 text-savanna-ink" />
@@ -141,7 +141,7 @@ export default async function DestinationPage({ params }: PageProps<"/destinatio
       </DetailSection>
 
       <DetailSection id="highlights" eyebrow="Highlights" title="Why we love it">
-        <RevealGroup className="grid gap-px overflow-hidden rounded-2xl bg-line ring-1 ring-line sm:grid-cols-2 lg:grid-cols-3">
+        <RevealGroup className="grid gap-px overflow-hidden rounded-none bg-line ring-1 ring-line sm:grid-cols-2 lg:grid-cols-3">
           {d.highlights.map((h, i) => (
             <RevealItem key={h} className="bg-snow p-7">
               <p className="font-display text-3xl text-savanna-ink">{String(i + 1).padStart(2, "0")}</p>

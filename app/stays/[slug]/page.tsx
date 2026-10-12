@@ -66,7 +66,7 @@ export default async function StayPage({ params }: PageProps<"/stays/[slug]">) {
             </p>
           </Reveal>
           <Reveal delay={0.1} className="lg:col-span-4 lg:col-start-9">
-            <aside className="rounded-2xl bg-white p-7 ring-1 ring-line lg:sticky lg:top-28">
+            <aside className="rounded-none bg-white p-7 ring-1 ring-line lg:sticky lg:top-28">
               <p className="text-sm text-stone">From</p>
               <p className="font-display text-5xl">
                 <Price usd={s.pricePerNight} />

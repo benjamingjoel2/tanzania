@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
-import { Reveal } from "@/components/ui/Reveal";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 
-/** Titled section used on detail pages; anchors line up below the sticky nav. */
+/** Titled section used on inner pages; anchors line up below the fixed header. */
 export function DetailSection({
   id,
   eyebrow,
@@ -10,35 +10,36 @@ export function DetailSection({
   tone = "plain",
   children,
   className,
+  action,
 }: {
   id?: string;
   eyebrow?: string;
-  title?: React.ReactNode;
+  title?: string;
   intro?: React.ReactNode;
   tone?: "plain" | "sand" | "white";
   children: React.ReactNode;
   className?: string;
+  action?: React.ReactNode;
 }) {
   return (
     <section
       id={id}
-      className={cn(
-        "scroll-mt-32 py-16 md:py-24",
-        tone === "sand" && "bg-sand/60",
-        tone === "white" && "bg-white",
-        className,
-      )}
+      className={cn("scroll-mt-28 section-y", tone === "sand" && "bg-sand/60", tone === "white" && "bg-white", className)}
     >
       <div className="container-x">
-        {(eyebrow || title) && (
-          <Reveal className="mb-10 max-w-3xl md:mb-12">
-            {eyebrow && <p className="eyebrow mb-3 text-savanna-ink">{eyebrow}</p>}
-            {title && <h2 className="text-h2">{title}</h2>}
-            {intro && <p className="mt-4 text-lg leading-relaxed text-stone">{intro}</p>}
-          </Reveal>
-        )}
+        {title && <SectionHeading eyebrow={eyebrow} title={title} intro={intro} action={action} />}
         {children}
       </div>
+    </section>
+  );
+}
+
+/** Content block inside a two-column detail layout. */
+export function DetailBlock({ id, title, children }: { id: string; title: string; children: React.ReactNode }) {
+  return (
+    <section id={id} className="scroll-mt-28 border-t border-line pt-8 pb-16 md:pb-20">
+      <h2 className="mb-8 text-[clamp(1.75rem,2.6vw,2.5rem)] leading-tight">{title}</h2>
+      {children}
     </section>
   );
 }

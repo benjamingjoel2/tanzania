@@ -4,7 +4,7 @@ import { Check, Minus, Plus } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export const inputClass =
-  "w-full rounded-xl border border-line bg-white px-4 py-3.5 text-base text-charcoal outline-none transition-colors placeholder:text-stone/60 focus:border-charcoal aria-[invalid=true]:border-red-600";
+  "w-full rounded-none border border-line bg-white px-4 py-3.5 text-base text-charcoal outline-none transition-colors placeholder:text-stone/60 focus:border-charcoal aria-[invalid=true]:border-red-600";
 
 export function FieldLabel({ htmlFor, children, optional }: { htmlFor?: string; children: React.ReactNode; optional?: boolean }) {
   return (
@@ -48,7 +48,7 @@ export function ChoiceCard({
   return (
     <label
       className={cn(
-        "relative flex cursor-pointer rounded-2xl border bg-white p-4 transition-all duration-300 has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-savanna",
+        "relative flex cursor-pointer rounded-none border bg-white p-4 transition-all duration-300 has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-savanna",
         checked ? "border-charcoal shadow-[0_0_0_1px_var(--color-charcoal)]" : "border-line hover:border-charcoal/40",
         className,
       )}
@@ -102,7 +102,7 @@ export function Stepper({
         max={max}
         value={Number.isNaN(value) ? "" : value}
         onChange={(e) => onChange(e.target.value === "" ? NaN : Number(e.target.value))}
-        className="w-16 rounded-xl border border-line bg-white py-2.5 text-center text-lg outline-none focus:border-charcoal"
+        className="w-16 rounded-none border border-line bg-white py-2.5 text-center text-lg outline-none focus:border-charcoal"
       />
       <button
         type="button"

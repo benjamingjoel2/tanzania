@@ -38,7 +38,7 @@ export function ContactForm() {
 
   if (sent) {
     return (
-      <div role="status" className="rounded-2xl bg-acacia p-10 text-white">
+      <div role="status" className="rounded-none bg-acacia p-10 text-white">
         <CheckCircle2 aria-hidden className="size-9 text-savanna-light" />
         <p className="mt-5 font-display text-3xl">Asante. Message received.</p>
         <p className="mt-3 text-white/80">A specialist will reply within one working day.</p>
@@ -55,7 +55,7 @@ export function ContactForm() {
   });
 
   return (
-    <form noValidate onSubmit={handleSubmit(onSubmit)} className="grid gap-6 rounded-2xl bg-white p-7 ring-1 ring-line md:p-10">
+    <form noValidate onSubmit={handleSubmit(onSubmit)} className="grid gap-6 border border-line bg-white p-7 md:p-10">
       <div className="grid gap-6 sm:grid-cols-2">
         <div>
           <FieldLabel htmlFor="contact-name">Name</FieldLabel>

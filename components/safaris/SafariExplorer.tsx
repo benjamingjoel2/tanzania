@@ -111,7 +111,7 @@ export function SafariExplorer({ safaris }: { safaris: Safari[] }) {
 
   return (
     <div>
-      <div className="rounded-2xl bg-white p-6 ring-1 ring-line md:p-8">
+      <div className="rounded-none bg-white p-6 ring-1 ring-line md:p-8">
         <div className="mb-6 flex items-center gap-2 font-medium">
           <SlidersHorizontal aria-hidden className="size-4" /> Filter safaris
         </div>
@@ -145,7 +145,7 @@ export function SafariExplorer({ safaris }: { safaris: Safari[] }) {
           </AnimatePresence>
         </motion.ul>
       ) : (
-        <div className="mt-6 rounded-2xl border border-dashed border-line p-12 text-center">
+        <div className="mt-6 rounded-none border border-dashed border-line p-12 text-center">
           <p className="font-display text-2xl">No sample safaris match those filters</p>
           <p className="mt-2 text-stone">Every trip we plan is tailor-made, so we can still build exactly this for you.</p>
           <button type="button" onClick={reset} className="mt-6 text-sm font-semibold underline underline-offset-4">
