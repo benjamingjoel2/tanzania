@@ -19,7 +19,7 @@ export function RouteCard({ climb, tone = "dark", className }: { climb: Climb; t
   return (
     <article
       className={cn(
-        "group relative flex flex-col rounded-2xl p-6 transition-colors duration-500",
+        "group relative flex flex-col rounded-none p-6 transition-colors duration-500",
         dark ? "bg-white/[0.06] ring-1 ring-white/10 hover:bg-white/[0.1]" : "bg-white ring-1 ring-line hover:ring-charcoal/30",
         className,
       )}

@@ -4,7 +4,7 @@ import { extendTailwindMerge } from "tailwind-merge";
 // Teach tailwind-merge about the custom type scale in globals.css so that
 // `text-h2` is treated as a font size, not a colour.
 const twMerge = extendTailwindMerge({
-  extend: { theme: { text: ["display", "h1", "h2", "h3"] } },
+  extend: { theme: { text: ["display", "h1", "h2", "h3", "lead"] } },
 });
 
 /** Join class names; later Tailwind utilities override conflicting earlier ones. */

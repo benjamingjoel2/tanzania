@@ -25,7 +25,7 @@ export function Confirmation({
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className={cn("text-center", variant === "page" && "rounded-3xl bg-snow p-8 ring-1 ring-line sm:p-14")}
+      className={cn("text-center", variant === "page" && "rounded-none bg-snow p-8 ring-1 ring-line sm:p-14")}
       role="status"
     >
       <CheckCircle2 aria-hidden className="mx-auto size-12 text-acacia" strokeWidth={1.5} />

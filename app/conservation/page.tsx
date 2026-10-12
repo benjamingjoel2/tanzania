@@ -24,7 +24,7 @@ export default function ConservationPage() {
         <div className="space-y-20 md:space-y-28">
           {c.pillars.map((p, i) => (
             <div key={p.title} className="grid items-center gap-10 lg:grid-cols-12 lg:gap-16">
-              <Reveal className={cn("relative aspect-[4/3] overflow-hidden rounded-2xl bg-sand lg:col-span-6", i % 2 && "lg:order-2 lg:col-start-7")}>
+              <Reveal className={cn("relative aspect-[4/3] overflow-hidden rounded-none bg-sand lg:col-span-6", i % 2 && "lg:order-2 lg:col-start-7")}>
                 <SmartImage image={p.image} fill sizes="(min-width: 1024px) 45vw, 100vw" className="object-cover" />
               </Reveal>
               <Reveal delay={0.1} className={cn("lg:col-span-5", i % 2 ? "lg:order-1 lg:col-start-1" : "lg:col-start-8")}>
@@ -44,7 +44,7 @@ export default function ConservationPage() {
       <DetailSection tone="sand" eyebrow="Our commitments" title="What you can hold us to">
         <ul className="grid gap-4 md:grid-cols-2">
           {c.commitments.map((x) => (
-            <li key={x} className="flex gap-3 rounded-xl bg-white p-5 ring-1 ring-line">
+            <li key={x} className="flex gap-3 rounded-none bg-white p-5 ring-1 ring-line">
               <Check aria-hidden className="mt-0.5 size-5 shrink-0 text-acacia" /> {x}
             </li>
           ))}

@@ -26,7 +26,7 @@ export function AltitudeProfile({ days, startAltitude }: { days: ItineraryDay[];
   const summitIndex = pts.findIndex((p) => p.high >= 5800);
 
   return (
-    <figure className="rounded-2xl bg-white p-4 ring-1 ring-line md:p-6">
+    <figure className="rounded-none bg-white p-4 ring-1 ring-line md:p-6">
       <svg viewBox={`0 0 ${W} ${H}`} className="w-full" role="img" aria-labelledby="alt-title">
         <title id="alt-title">{`Altitude profile: ${pts.map((p) => `${p.label} ${p.high.toLocaleString("en-GB")} m`).join(", ")}`}</title>
         {[2000, 3000, 4000, 5000, 6000].map((a) => (

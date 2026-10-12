@@ -62,7 +62,7 @@ export default function PlannerModal({ prefill, onClose }: { prefill?: PlannerPr
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-        className="relative max-h-[92dvh] w-full max-w-3xl overflow-y-auto rounded-t-3xl bg-snow p-6 shadow-2xl sm:rounded-3xl sm:p-10"
+        className="relative max-h-[92dvh] w-full max-w-3xl overflow-y-auto rounded-none bg-snow p-6 shadow-2xl rounded-none sm:p-10"
       >
         <div className="mb-8 flex items-start justify-between gap-6">
           <div>

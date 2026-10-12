@@ -192,7 +192,7 @@ export function TripPlanner({
           if (last) void handleSubmit(onSubmit, focusFirstError)(e);
           else void next();
         }}
-        className={cn(variant === "page" && "rounded-3xl bg-snow p-6 ring-1 ring-line sm:p-10")}
+        className={cn(variant === "page" && "rounded-none bg-snow p-6 ring-1 ring-line sm:p-10")}
       >
         <ProgressBar current={step} labels={stepLabels} onSelect={goTo} />
 
@@ -218,7 +218,7 @@ export function TripPlanner({
         </div>
 
         {submitError && (
-          <p role="alert" className="mt-6 rounded-xl bg-red-50 px-4 py-3 text-sm text-red-800">
+          <p role="alert" className="mt-6 rounded-none bg-red-50 px-4 py-3 text-sm text-red-800">
             {submitError}
           </p>
         )}

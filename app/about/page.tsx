@@ -30,7 +30,7 @@ export default function AboutPage() {
             <h2 className="text-h2">
               <span className="italic">Uhuru</span>, n.
             </h2>
-            <p className="mt-4 font-display text-xl text-stone italic">Swahili: freedom, independence.</p>
+            <p className="mt-4 font-display text-xl text-stone">Swahili: freedom, independence.</p>
             <DoorMotif className="mt-8 max-w-48" />
           </Reveal>
           <Reveal delay={0.1} className="space-y-6 text-lg leading-relaxed text-stone lg:col-span-7 lg:col-start-6">
@@ -46,7 +46,7 @@ export default function AboutPage() {
       <DetailSection eyebrow="What we believe" title="How we work">
         <RevealGroup className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {a.values.map((v, i) => (
-            <RevealItem key={v.title} className="rounded-2xl bg-white p-7 ring-1 ring-line">
+            <RevealItem key={v.title} className="rounded-none bg-white p-7 ring-1 ring-line">
               <p className="font-display text-3xl text-savanna-ink">0{i + 1}</p>
               <h3 className="mt-4 text-h3">{v.title}</h3>
               <p className="mt-3 text-stone">{v.body}</p>
@@ -58,7 +58,7 @@ export default function AboutPage() {
         <RevealGroup className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {a.team.map((m, i) => (
             <RevealItem key={`${m.role}-${i}`}>
-              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-sand">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-none bg-sand">
                 <SmartImage image={m.image} fill sizes="(min-width: 1024px) 33vw, 50vw" className="object-cover" />
               </div>
               <h3 className="mt-5 font-display text-2xl">{m.name}</h3>

@@ -8,6 +8,7 @@ import { ContactForm } from "@/components/sections/ContactForm";
 import { MapPlaceholder } from "@/components/sections/MapPlaceholder";
 import { SocialIcon } from "@/components/ui/SocialIcon";
 import { OpenPlannerButton } from "@/components/ui/OpenPlannerButton";
+import { ImageReveal } from "@/components/ui/Motion";
 
 export const metadata = buildMetadata({
   title: "Contact us",
@@ -30,47 +31,49 @@ export default function ContactPage() {
         size="sm"
         eyebrow="Contact"
         title="Talk to a specialist"
-        intro="Real people who know Tanzania inside out. We reply within one working day."
+        intro="Real people who know Tanzania inside out. Say jambo: we reply within one working day."
         image={images.specialist}
         crumbs={[{ label: "Contact", href: "/contact" }]}
       />
-      <DetailSection tone="sand">
-        <div className="grid gap-12 lg:grid-cols-12">
-          <div className="lg:col-span-5">
-            <h2 className="text-h2">Say jambo</h2>
-            <p className="mt-4 text-lg text-stone">
-              Planning a trip? The quickest route is our{" "}
-              <span className="font-medium text-charcoal">five-step trip planner</span>. For anything else, use the form or reach us
-              directly.
-            </p>
-            <OpenPlannerButton className="mt-6" variant="dark" arrow />
-            <ul className="mt-10 space-y-5">
-              {items.map(({ Icon, label, value, href }) => (
-                <li key={label} className="flex items-start gap-4">
-                  <span className="grid size-11 shrink-0 place-items-center rounded-full bg-snow ring-1 ring-line">
-                    {Icon ? <Icon aria-hidden className="size-5 text-savanna-ink" /> : <SocialIcon name="whatsapp" className="size-5 text-savanna-ink" />}
-                  </span>
-                  <div>
-                    <p className="text-sm text-stone">{label}</p>
-                    {href ? (
-                      <a href={href} className="font-medium underline-offset-4 hover:underline">
-                        {value}
-                      </a>
-                    ) : (
-                      <p className="font-medium">{value}</p>
-                    )}
-                  </div>
-                </li>
-              ))}
-            </ul>
-            <p className="mt-8 text-sm text-stone">{contact.hours}</p>
-          </div>
-          <div className="lg:col-span-7">
-            <ContactForm />
+      <section className="container-x grid gap-10 pb-24 lg:grid-cols-2 lg:gap-16">
+        <div className="relative hidden lg:block">
+          <div className="sticky top-28 aspect-[4/5] overflow-hidden">
+            <ImageReveal image={images.guide} className="absolute inset-0" sizes="50vw" />
           </div>
         </div>
-      </DetailSection>
-      <DetailSection>
+        <div>
+          <p className="text-lead">
+            Planning a trip? The quickest route is our five-step trip planner. For anything else, use the form or reach us
+            directly.
+          </p>
+          <OpenPlannerButton className="mt-6" variant="dark" arrow />
+          <ul className="mt-12 grid gap-px border border-line bg-line sm:grid-cols-2">
+            {items.map(({ Icon, label, value, href }) => (
+              <li key={label} className="flex items-start gap-4 bg-snow p-5">
+                {Icon ? (
+                  <Icon aria-hidden className="mt-0.5 size-5 shrink-0 text-savanna-ink" />
+                ) : (
+                  <SocialIcon name="whatsapp" className="mt-0.5 size-5 shrink-0 text-savanna-ink" />
+                )}
+                <div>
+                  <p className="text-sm text-stone">{label}</p>
+                  {href ? (
+                    <a href={href} className="underline-offset-4 hover:underline">
+                      {value}
+                    </a>
+                  ) : (
+                    <p>{value}</p>
+                  )}
+                </div>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-5 text-sm text-stone">{contact.hours}</p>
+          <h2 className="mt-14 mb-6 text-h3">Send us a message</h2>
+          <ContactForm />
+        </div>
+      </section>
+      <DetailSection tone="sand" eyebrow="Find us" title="Our base in Arusha">
         <MapPlaceholder stops={["Arusha office", "Kilimanjaro Airport (JRO)"]} title="Find us" />
       </DetailSection>
     </>

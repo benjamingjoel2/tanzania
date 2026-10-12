@@ -12,7 +12,7 @@ export function SafariCard({ safari, className }: { safari: Safari; className?: 
   return (
     <article
       className={cn(
-        "group relative flex flex-col overflow-hidden rounded-2xl bg-white shadow-[0_1px_0_rgba(36,33,30,0.06)] ring-1 ring-line/70 transition-shadow duration-500 hover:shadow-xl",
+        "group relative flex flex-col overflow-hidden rounded-none bg-white shadow-[0_1px_0_rgba(36,33,30,0.06)] ring-1 ring-line/70 transition-shadow duration-500 hover:shadow-xl",
         className,
       )}
     >

@@ -5,7 +5,7 @@ import { DifficultyDots } from "@/components/cards/RouteCard";
 
 export function RouteComparisonTable({ climbs }: { climbs: Climb[] }) {
   return (
-    <div className="overflow-x-auto rounded-2xl bg-white ring-1 ring-line">
+    <div className="overflow-x-auto rounded-none bg-white ring-1 ring-line">
       <table className="w-full min-w-[820px] text-left text-sm">
         <caption className="sr-only">Comparison of Kilimanjaro routes</caption>
         <thead className="bg-sand/60 text-xs tracking-wide text-stone uppercase">

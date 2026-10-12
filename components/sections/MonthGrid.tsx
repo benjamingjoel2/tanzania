@@ -17,7 +17,7 @@ export function MonthGrid({ months, caption }: { months: MonthInfo[]; caption?: 
         {months.map((m) => {
           const r = ratingStyles[m.rating];
           return (
-            <li key={m.month} className="group relative flex flex-col overflow-hidden rounded-xl ring-1 ring-line">
+            <li key={m.month} className="group relative flex flex-col overflow-hidden rounded-none ring-1 ring-line">
               <div className={cn("flex flex-col px-3 py-2.5", r.className)}>
                 <span className="font-display text-lg">{MONTHS[m.month - 1]}</span>
                 <span className="text-[0.6rem] font-semibold tracking-wider uppercase opacity-80">{r.label}</span>

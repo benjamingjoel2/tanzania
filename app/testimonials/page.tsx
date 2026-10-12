@@ -25,7 +25,7 @@ export default function TestimonialsPage() {
         crumbs={[{ label: "Testimonials", href: "/testimonials" }]}
       />
       <DetailSection>
-        <p className="mb-12 rounded-xl border border-dashed border-savanna-ink/50 bg-savanna/10 px-5 py-4 text-sm text-savanna-ink">
+        <p className="mb-12 rounded-none border border-dashed border-savanna-ink/50 bg-savanna/10 px-5 py-4 text-sm text-savanna-ink">
           These testimonials are placeholders that show the layout. Replace them with real, permissioned reviews (or embed a
           verified review platform) before launch.
         </p>

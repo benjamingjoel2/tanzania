@@ -5,15 +5,17 @@ import { absoluteUrl, buildMetadata } from "@/lib/seo";
 import { siteConfig } from "@/config/site";
 import { PageHero } from "@/components/sections/PageHero";
 import { AnchorNav } from "@/components/sections/AnchorNav";
-import { DetailSection } from "@/components/sections/DetailSection";
+import { DetailBlock, DetailSection } from "@/components/sections/DetailSection";
+import { PhotoStrip } from "@/components/sections/PhotoStrip";
+import { Inclusions } from "@/components/sections/Inclusions";
+import { images } from "@/data/images";
 import { ItineraryTimeline } from "@/components/sections/ItineraryTimeline";
 import { FinalCta } from "@/components/sections/FinalCta";
 import { PricingPanel } from "@/components/safaris/PricingPanel";
 import { AltitudeProfile } from "@/components/kilimanjaro/AltitudeProfile";
 import { RouteCard, DifficultyDots } from "@/components/cards/RouteCard";
-import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
+import { RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { Check } from "lucide-react";
 
 /** Gate altitudes (m) where each route starts. */
 const startAltitude: Record<string, number> = {
@@ -46,6 +48,13 @@ export default async function ClimbPage({ params }: PageProps<"/kilimanjaro/[rou
   if (!c) notFound();
   const others = climbs.filter((o) => o.slug !== c.slug).slice(0, 4);
 
+  const links = [
+    { id: "overview", label: "Overview" },
+    { id: "profile", label: "Altitude profile" },
+    { id: "itinerary", label: "Day by day" },
+    { id: "included", label: "What's included" },
+  ];
+
   return (
     <>
       <PageHero
@@ -59,20 +68,13 @@ export default async function ClimbPage({ params }: PageProps<"/kilimanjaro/[rou
           { label: c.name, href: `/kilimanjaro/${c.slug}` },
         ]}
       />
-      <AnchorNav
-        items={[
-          { id: "overview", label: "Overview" },
-          { id: "profile", label: "Altitude profile" },
-          { id: "itinerary", label: "Day by day" },
-          { id: "included", label: "What's included" },
-        ]}
-      />
+      <PhotoStrip images={[c.image, images.kilimanjaroTrail, images.kilimanjaroCamp, images.kilimanjaroSummit]} />
+      <AnchorNav items={links} className="lg:hidden" />
 
-      <DetailSection id="overview">
-        <div className="grid gap-12 lg:grid-cols-12">
-          <Reveal className="lg:col-span-7">
-            <p className="eyebrow mb-3 text-savanna-ink">Overview</p>
-            <p className="font-display text-2xl leading-snug md:text-3xl">{c.summary}</p>
+      <div className="container-x grid gap-12 pt-10 pb-10 lg:grid-cols-12 lg:gap-16 lg:pt-0">
+        <div className="lg:col-span-8">
+          <DetailBlock id="overview" title="Overview">
+            <p className="text-lead">{c.summary}</p>
             {c.overview.map((p) => (
               <p key={p} className="mt-6 text-lg leading-relaxed text-stone">
                 {p}
@@ -87,54 +89,45 @@ export default async function ClimbPage({ params }: PageProps<"/kilimanjaro/[rou
               </div>
               <div>
                 <dt className="text-sm text-stone">Acclimatisation</dt>
-                <dd className="mt-1 font-medium">{c.acclimatisation}</dd>
+                <dd className="mt-1">{c.acclimatisation}</dd>
               </div>
               <div>
                 <dt className="text-sm text-stone">Crowds</dt>
-                <dd className="mt-1 font-medium">{c.crowds}</dd>
+                <dd className="mt-1">{c.crowds}</dd>
               </div>
               <div className="col-span-2 sm:col-span-3">
                 <dt className="text-sm text-stone">Scenery</dt>
                 <dd className="mt-1">{c.scenery}</dd>
               </div>
             </dl>
-          </Reveal>
-          <div className="lg:col-span-4 lg:col-start-9">
-            <PricingPanel
-              priceFrom={c.priceFrom}
-              meta={[
-                { label: "Duration", value: `${c.days} days on the mountain` },
-                { label: "Sleeping", value: c.accommodation },
-                { label: "Summit success", value: c.successNote.split(";")[0] },
-              ]}
-              enquireLabel="Enquire about this climb"
-              prefill={{ tripTypes: ["kilimanjaro"], notes: `I'm interested in the ${c.name} (${c.days} days).` }}
-              note="Guide price per person for a private climb for two, including park fees. Group size, dates and hotel choices affect the final price."
-            />
-          </div>
+          </DetailBlock>
+          <DetailBlock id="profile" title="Altitude profile">
+            <AltitudeProfile days={c.itinerary} startAltitude={startAltitude[c.slug] ?? 1800} />
+          </DetailBlock>
+          <DetailBlock id="itinerary" title="Day by day, with altitudes">
+            <ItineraryTimeline days={c.itinerary} />
+          </DetailBlock>
+          <DetailBlock id="included" title="What's included">
+            <Inclusions included={kilimanjaroContent.included} excluded={[]} />
+          </DetailBlock>
         </div>
-      </DetailSection>
+        <div className="lg:col-span-4">
+          <PricingPanel
+            priceFrom={c.priceFrom}
+            meta={[
+              { label: "Duration", value: `${c.days} days on the mountain` },
+              { label: "Sleeping", value: c.accommodation },
+              { label: "Summit success", value: c.successNote.split(";")[0] },
+            ]}
+            enquireLabel="Enquire about this climb"
+            prefill={{ tripTypes: ["kilimanjaro"], notes: `I'm interested in the ${c.name} (${c.days} days).` }}
+            links={links}
+            note="Guide price per person for a private climb for two, including park fees. Group size, dates and hotel choices affect the final price."
+          />
+        </div>
+      </div>
 
-      <DetailSection id="profile" tone="sand" eyebrow="Altitude" title="Altitude profile">
-        <AltitudeProfile days={c.itinerary} startAltitude={startAltitude[c.slug] ?? 1800} />
-      </DetailSection>
-
-      <DetailSection id="itinerary" eyebrow="Itinerary" title="Day by day, with altitudes">
-        <ItineraryTimeline days={c.itinerary} />
-      </DetailSection>
-
-      <DetailSection id="included" tone="sand" eyebrow="Every climb" title="What's included">
-        <ul className="grid gap-4 md:grid-cols-2">
-          {kilimanjaroContent.included.map((i) => (
-            <li key={i} className="flex gap-3 rounded-xl bg-white p-5 ring-1 ring-line">
-              <Check aria-hidden className="mt-0.5 size-5 shrink-0 text-acacia" />
-              {i}
-            </li>
-          ))}
-        </ul>
-      </DetailSection>
-
-      <DetailSection eyebrow="Other routes" title="Compare with">
+      <DetailSection tone="sand" eyebrow="Other routes" title="Compare with">
         <RevealGroup className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {others.map((o) => (
             <RevealItem key={o.slug} className="flex">

@@ -6,7 +6,7 @@ import { formatDate } from "@/lib/utils";
 export function PostCard({ post }: { post: Post }) {
   return (
     <Link href={`/blog/${post.slug}`} className="group block">
-      <div className="relative aspect-[16/11] overflow-hidden rounded-2xl bg-sand">
+      <div className="relative aspect-[16/11] overflow-hidden rounded-none bg-sand">
         <SmartImage
           image={post.image}
           fill

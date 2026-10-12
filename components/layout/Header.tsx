@@ -42,7 +42,7 @@ export function Header({
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const solid = scrolled || menuOpen || megaOpen;
+  const solid = (scrolled || megaOpen) && !menuOpen;
 
   return (
     <>
@@ -60,14 +60,24 @@ export function Header({
 
           <nav aria-label="Main" className="hidden xl:block">
             <ul className="flex items-center gap-7 text-[0.94rem]">
-              {siteConfig.mainNav.map((item) => {
+              {siteConfig.mainNav.map((item, i) => {
                 const active =
                   pathname === item.href ||
                   pathname.startsWith(`${item.href}/`);
                 const hasMega =
                   item.href === "/destinations" && destinationGroups.length > 0;
                 return (
-                  <li key={item.href} onMouseEnter={() => setMegaOpen(hasMega)}>
+                  <motion.li
+                    key={item.href}
+                    onMouseEnter={() => setMegaOpen(hasMega)}
+                    initial={{ opacity: 0, y: -12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      duration: 0.6,
+                      delay: 0.1 * i,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                  >
                     <Link
                       href={item.href}
                       aria-current={active ? "page" : undefined}
@@ -77,7 +87,7 @@ export function Header({
                     >
                       {item.label}
                     </Link>
-                  </li>
+                  </motion.li>
                 );
               })}
             </ul>

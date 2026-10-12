@@ -6,14 +6,16 @@ export type ButtonVariant = "primary" | "dark" | "light" | "outline" | "outline-
 export type ButtonSize = "sm" | "md" | "lg";
 
 const base =
-  "group/btn inline-flex items-center justify-center gap-2 rounded-full font-medium tracking-tight transition-[background-color,color,border-color,transform] duration-300 ease-out-soft disabled:pointer-events-none disabled:opacity-50 whitespace-nowrap";
+  "group/btn inline-flex items-center justify-center gap-2.5 rounded-full font-normal tracking-tight transition-[background-color,color,border-color,transform] duration-200 ease-out-soft disabled:pointer-events-none disabled:opacity-50 whitespace-nowrap";
 
 const variants: Record<ButtonVariant, string> = {
-  primary: "bg-savanna text-charcoal hover:bg-savanna-light",
-  dark: "bg-charcoal text-snow hover:bg-acacia",
-  light: "bg-snow text-charcoal hover:bg-white",
-  outline: "border border-charcoal/25 text-charcoal hover:border-charcoal hover:bg-charcoal hover:text-snow",
-  "outline-light": "border border-white/40 text-white hover:bg-white hover:text-charcoal",
+  primary: "border border-savanna bg-savanna text-charcoal hover:border-savanna-light hover:bg-savanna-light",
+  dark: "border border-charcoal bg-charcoal text-snow hover:border-acacia hover:bg-acacia",
+  light: "border border-snow bg-snow text-charcoal hover:bg-white",
+  // Dashed "route line" outline that turns solid and fills on hover.
+  outline:
+    "border border-dashed border-charcoal text-charcoal hover:border-solid hover:bg-charcoal hover:text-snow",
+  "outline-light": "border border-dashed border-white text-white hover:border-solid hover:bg-white hover:text-charcoal",
   link: "px-0! py-0! rounded-none text-charcoal underline-offset-[6px] hover:underline",
 };
 

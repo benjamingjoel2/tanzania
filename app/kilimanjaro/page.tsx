@@ -65,7 +65,7 @@ export default function KilimanjaroPage() {
             ))}
           </Reveal>
         </div>
-        <dl className="mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-2xl bg-line ring-1 ring-line md:grid-cols-4">
+        <dl className="mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-none bg-line ring-1 ring-line md:grid-cols-4">
           {[
             ["5,895 m", "Uhuru Peak"],
             ["6–9 days", "On the mountain"],
@@ -114,7 +114,7 @@ export default function KilimanjaroPage() {
       <DetailSection id="training" eyebrow="Preparation" title="Training and altitude advice">
         <RevealGroup className="grid gap-6 md:grid-cols-2">
           {k.training.map((t, i) => (
-            <RevealItem key={t.title} className="rounded-2xl bg-white p-7 ring-1 ring-line">
+            <RevealItem key={t.title} className="rounded-none bg-white p-7 ring-1 ring-line">
               <p className="font-display text-3xl text-savanna-ink">0{i + 1}</p>
               <h3 className="mt-3 text-h3">{t.title}</h3>
               <p className="mt-3 leading-relaxed text-stone">{t.body}</p>
@@ -129,7 +129,7 @@ export default function KilimanjaroPage() {
       <DetailSection id="included" tone="sand" eyebrow="Every climb" title="What's included">
         <ul className="grid gap-4 md:grid-cols-2">
           {k.included.map((i) => (
-            <li key={i} className="flex gap-3 rounded-xl bg-white p-5 ring-1 ring-line">
+            <li key={i} className="flex gap-3 rounded-none bg-white p-5 ring-1 ring-line">
               <Check aria-hidden className="mt-0.5 size-5 shrink-0 text-acacia" />
               {i}
             </li>
@@ -151,7 +151,7 @@ export default function KilimanjaroPage() {
               {k.porterWelfare.note}
             </p>
           </Reveal>
-          <Reveal delay={0.1} className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-acacia">
+          <Reveal delay={0.1} className="relative aspect-[4/3] overflow-hidden rounded-none bg-acacia">
             <SmartImage image={k.porterWelfare.image} fill sizes="(min-width: 1024px) 45vw, 100vw" className="object-cover" />
           </Reveal>
         </div>

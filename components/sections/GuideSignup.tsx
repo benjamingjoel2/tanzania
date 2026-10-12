@@ -38,7 +38,7 @@ export function GuideSignup() {
   return (
     <section className="section-y bg-sand/60" aria-labelledby="guide-heading">
       <div className="container-x">
-        <div className="relative overflow-hidden rounded-3xl bg-snow px-6 py-14 ring-1 ring-line md:px-16 md:py-20">
+        <div className="relative overflow-hidden rounded-none bg-snow px-6 py-14 ring-1 ring-line md:px-16 md:py-20">
           <DoorMotif className="absolute inset-x-0 top-0 opacity-70" />
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <div>
@@ -61,7 +61,7 @@ export function GuideSignup() {
                     key="done"
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="rounded-2xl bg-acacia p-8 text-white"
+                    className="rounded-none bg-acacia p-8 text-white"
                   >
                     <CheckCircle2 aria-hidden className="size-8 text-savanna-light" />
                     <p className="mt-4 font-display text-3xl">Karibu, it&apos;s on its way.</p>
