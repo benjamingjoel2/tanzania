@@ -29,10 +29,10 @@ export function PlanningBento() {
           How it works
         </EyebrowLabel>
         <SplitReveal text="Combine it your way" className="text-h2" />
-        <p aria-label="Safari, Kilimanjaro and Zanzibar" className="mt-6 flex flex-wrap gap-x-8 gap-y-2 text-[clamp(2rem,5.5vw,5rem)] leading-none tracking-[-0.05em] text-white/90">
+        <p className="mt-6 flex flex-wrap gap-x-8 gap-y-2 text-[clamp(2rem,5.5vw,5rem)] leading-none tracking-[-0.05em] text-white/90">
           {["Safari", "Kilimanjaro", "Zanzibar"].map((w) => (
-            <span key={w} aria-hidden>
-              <span className="text-savanna-light">+</span>
+            <span key={w}>
+              <span aria-hidden className="text-savanna-light">+</span>
               {w}
             </span>
           ))}

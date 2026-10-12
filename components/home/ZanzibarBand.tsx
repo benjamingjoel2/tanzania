@@ -18,7 +18,7 @@ export function ZanzibarBand() {
     <section className="section-y bg-ocean-ink text-white">
       <div className="container-x">
         <Reveal className="max-w-5xl">
-          <EyebrowLabel tone="dark" className="text-ocean-light">
+          <EyebrowLabel tone="dark" className="text-white/90">
             {zanzibar.eyebrow}
           </EyebrowLabel>
           <h2 className="mt-5 text-h2">{zanzibar.title}</h2>

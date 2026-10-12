@@ -39,29 +39,12 @@ export function Hero() {
 
       <motion.div style={{ opacity: fade }} className="container-x grid gap-10 pt-36 pb-6 md:grid-cols-12 md:items-end md:pb-10">
         <div className="md:col-span-7 lg:col-span-6">
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease, delay: 0.5 }}
-            className="eyebrow mb-5 text-white/85"
-          >
-            {hero.eyebrow}
-          </motion.p>
-          <motion.h1
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease, delay: 0.6 }}
-            className="text-h2"
-          >
+          <p className="eyebrow mb-5 animate-fade-up text-white/85 [animation-delay:0.3s]">{hero.eyebrow}</p>
+          <h1 className="animate-fade-up text-h2 [animation-delay:0.4s]">
             Tailor-made safaris, Kilimanjaro climbs and Zanzibar escapes
-          </motion.h1>
+          </h1>
         </div>
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease, delay: 0.75 }}
-          className="md:col-span-5 md:col-start-8 lg:col-span-4 lg:col-start-9"
-        >
+        <div className="animate-fade-up md:col-span-5 md:col-start-8 lg:col-span-4 lg:col-start-9 [animation-delay:0.55s]">
           <p className="text-lg leading-relaxed text-white/85">{hero.intro}</p>
           <div className="mt-7 flex flex-wrap gap-3">
             <OpenPlannerButton size="lg" arrow />
@@ -69,7 +52,7 @@ export function Hero() {
               Explore safaris
             </ButtonLink>
           </div>
-        </motion.div>
+        </div>
       </motion.div>
 
       <div className="relative">

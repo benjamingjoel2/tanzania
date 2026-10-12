@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useFormContext } from "react-hook-form";
 import { tripTypes } from "@/data/planner";
 import type { PlannerValues } from "@/lib/planner-schema";
+import { unsplashLoader } from "@/lib/image-loader";
 import { ChoiceCard, FieldError, FieldLabel, Legend, inputClass } from "../fields";
 
 export function StepWhat() {
@@ -29,6 +30,7 @@ export function StepWhat() {
               <span className="relative block aspect-[4/3] w-full bg-sand">
                 <Image
                   src={t.image.src}
+                  loader={unsplashLoader}
                   alt=""
                   fill
                   sizes="(min-width: 768px) 220px, 45vw"
