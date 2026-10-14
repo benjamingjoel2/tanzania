@@ -16,6 +16,19 @@ import { Statement } from "@/components/home/Statement";
 import { JournalSection } from "@/components/sections/JournalSection";
 import { GuideSignup } from "@/components/sections/GuideSignup";
 import { FinalCta } from "@/components/sections/FinalCta";
+import { buildMetadata } from "@/lib/seo";
+import { homeContent } from "@/data/home";
+
+export const metadata = {
+  ...buildMetadata({
+    title: "Tailor-made Tanzania safaris, Kilimanjaro climbs & Zanzibar",
+    description:
+      "Private Tanzania safaris, Kilimanjaro climbs and Zanzibar escapes, planned end to end by one dedicated specialist. Serengeti, Ngorongoro, Great Migration and more.",
+    path: "/",
+    image: homeContent.hero.image,
+  }),
+  title: { absolute: "Uhuru Journeys | Tanzania Safaris, Kilimanjaro & Zanzibar" },
+};
 
 const stayBlurbs: Record<StayType, string> = {
   "tented-camp": "Canvas, wooden decks and the sounds of the bush at night: the classic way to sleep on safari.",

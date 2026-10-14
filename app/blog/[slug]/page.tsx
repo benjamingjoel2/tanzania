@@ -18,7 +18,16 @@ export async function generateMetadata({ params }: PageProps<"/blog/[slug]">) {
   const { slug } = await params;
   const p = getPost(slug);
   if (!p) return {};
-  return buildMetadata({ title: p.title, description: p.excerpt, path: `/blog/${p.slug}`, image: p.image, type: "article" });
+  return buildMetadata({
+    title: p.title,
+    description: p.excerpt,
+    path: `/blog/${p.slug}`,
+    image: p.image,
+    type: "article",
+    publishedTime: p.date,
+    authors: [p.author],
+    tags: p.tags,
+  });
 }
 
 export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
@@ -65,7 +74,9 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
           description: p.excerpt,
           datePublished: p.date,
           image: p.image.src,
-          author: { "@type": "Organization", name: siteConfig.name },
+          inLanguage: "en-GB",
+          keywords: p.tags.join(", "),
+          author: { "@type": "Organization", name: siteConfig.name, url: siteConfig.url },
           publisher: { "@type": "Organization", name: siteConfig.name },
           mainEntityOfPage: absoluteUrl(`/blog/${p.slug}`),
         }}

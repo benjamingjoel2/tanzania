@@ -11,7 +11,10 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps<"/legal/[slug]">) {
   const { slug } = await params;
   const p = legalPages.find((x) => x.slug === slug);
-  return p ? buildMetadata({ title: p.title, description: `${p.title} for Uhuru Journeys.`, path: `/legal/${p.slug}` }) : {};
+  // noindex while these hold placeholder text; remove once the real policies are in place.
+  return p
+    ? buildMetadata({ title: p.title, description: `${p.title} for Uhuru Journeys.`, path: `/legal/${p.slug}`, noindex: true })
+    : {};
 }
 
 const anchor = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-");
