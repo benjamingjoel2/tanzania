@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: PageProps<"/safaris/[slug]">)
   const { slug } = await params;
   const s = getSafari(slug);
   if (!s) return {};
-  return buildMetadata({ title: `${s.title} · ${s.days}-day Tanzania safari`, description: s.summary, path: `/safaris/${s.slug}`, image: s.image });
+  return buildMetadata({ title: s.title.length > 34 ? s.title : `${s.title} · ${s.days}-day safari`, description: s.summary, path: `/safaris/${s.slug}`, image: s.image });
 }
 
 const links = [

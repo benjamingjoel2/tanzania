@@ -17,7 +17,7 @@ import { OpenPlannerButton } from "@/components/ui/OpenPlannerButton";
 import { ButtonLink } from "@/components/ui/Button";
 
 export const metadata = buildMetadata({
-  title: "Zanzibar holidays: beaches, Stone Town & safari extensions",
+  title: "Zanzibar holidays & beach extensions",
   description:
     "Plan Zanzibar the right way: which beach suits you, how long to spend in Stone Town, where to stay and how to add the island to a Tanzania safari or Kilimanjaro climb.",
   path: "/zanzibar",

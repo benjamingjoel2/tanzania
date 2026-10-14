@@ -25,7 +25,16 @@ export const siteConfig = {
   tagline: "Tailor-made Tanzania, from the plains to the peak",
   description:
     "Tailor-made Tanzania safaris, Kilimanjaro climbs and Zanzibar escapes, planned end to end by one dedicated specialist.",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.uhurujourneys.com",
+  /**
+   * Canonical origin used for canonical tags, the sitemap and Open Graph URLs.
+   * Set NEXT_PUBLIC_SITE_URL to your real domain; on Vercel it falls back to the
+   * project's production URL so canonicals always point at a live site.
+   */
+  url:
+    process.env.NEXT_PUBLIC_SITE_URL ??
+    (process.env.VERCEL_PROJECT_PRODUCTION_URL
+      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+      : "http://localhost:3000"),
   locale: "en_GB",
 
   brandColors: {

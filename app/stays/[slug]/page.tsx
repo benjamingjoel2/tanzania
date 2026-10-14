@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: PageProps<"/stays/[slug]">) {
   const { slug } = await params;
   const s = getStay(slug);
   if (!s) return {};
-  return buildMetadata({ title: `${s.name}, ${s.location}`, description: s.summary, path: `/stays/${s.slug}`, image: s.image });
+  return buildMetadata({ title: `${s.name}, ${getDestination(s.destination)?.name ?? "Tanzania"}`, description: s.summary, path: `/stays/${s.slug}`, image: s.image });
 }
 
 export default async function StayPage({ params }: PageProps<"/stays/[slug]">) {

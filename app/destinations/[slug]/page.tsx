@@ -9,7 +9,9 @@ import {
   safarisForDestination,
   staysForDestination,
 } from "@/lib/content";
-import { buildMetadata } from "@/lib/seo";
+import { absoluteUrl, buildMetadata } from "@/lib/seo";
+import { destinationCoords } from "@/lib/map";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { PageHero } from "@/components/sections/PageHero";
 import { AnchorNav } from "@/components/sections/AnchorNav";
 import { DetailSection } from "@/components/sections/DetailSection";
@@ -240,6 +242,21 @@ export default async function DestinationPage({
       </DetailSection>
 
       <FinalCta title={`Plan your ${d.name} journey`} />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "TouristDestination",
+          name: d.name,
+          description: d.summary,
+          url: absoluteUrl(`/destinations/${d.slug}`),
+          image: d.image.src,
+          containedInPlace: { "@type": "Country", name: "Tanzania" },
+          touristType: d.highlights.slice(0, 3),
+          ...(destinationCoords[d.slug]
+            ? { geo: { "@type": "GeoCoordinates", latitude: destinationCoords[d.slug][1], longitude: destinationCoords[d.slug][0] } }
+            : {}),
+        }}
+      />
     </>
   );
 }
