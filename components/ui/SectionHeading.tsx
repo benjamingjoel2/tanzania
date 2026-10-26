@@ -66,10 +66,10 @@ export function SectionHeading({
         <div className="grid gap-5 md:grid-cols-12 md:gap-8">
           <div className="md:col-span-3">{eyebrow && <EyebrowLabel tone={tone} className="md:pt-3">{eyebrow}</EyebrowLabel>}</div>
           <div className="md:col-span-9">
-            <SplitReveal as={as} text={title} className="max-w-4xl text-h2" />
+            <SplitReveal as={as} text={title} className="max-w-5xl text-h2" />
             {(intro || action) && (
               <Reveal className="mt-6 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-                {intro && <p className={cn("max-w-2xl text-lead", muted)}>{intro}</p>}
+                {intro && <p className={cn("max-w-3xl text-lead", muted)}>{intro}</p>}
                 {action && <div className="shrink-0">{action}</div>}
               </Reveal>
             )}

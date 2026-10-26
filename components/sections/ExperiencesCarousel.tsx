@@ -89,10 +89,10 @@ export function ExperiencesCarousel({
           onPointerLeave={endDrag}
           onClickCapture={onClickCapture}
           onDragStart={(e) => e.preventDefault()}
-          className="no-scrollbar -mx-5 flex cursor-grab snap-x snap-mandatory gap-2.5 overflow-x-auto scroll-px-5 px-5 pb-2 select-none active:cursor-grabbing md:-mx-10 md:scroll-px-10 md:px-10 xl:-mx-16 xl:scroll-px-16 xl:px-16"
+          className="no-scrollbar -mx-5 flex cursor-grab snap-x snap-mandatory gap-2.5 overflow-x-auto scroll-px-5 px-5 pb-2 select-none active:cursor-grabbing md:-mx-8 md:scroll-px-8 md:px-8 xl:-mx-12 xl:scroll-px-12 xl:px-12"
         >
           {experiences.map((e) => (
-            <li key={e.slug} className="w-[78%] shrink-0 snap-start sm:w-[42%] lg:w-[27%] xl:w-[23%]">
+            <li key={e.slug} className="w-[78%] shrink-0 snap-start sm:w-[42%] lg:w-[27%] xl:w-[22%] 2xl:w-[18%]">
               <ExperienceCard experience={e} />
             </li>
           ))}
