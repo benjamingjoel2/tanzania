@@ -37,16 +37,16 @@ export function Hero() {
       </motion.div>
       <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-b from-black/45 via-black/5 to-black/55" />
 
-      <motion.div style={{ opacity: fade }} className="container-x grid gap-10 pt-36 pb-6 md:grid-cols-12 md:items-end md:pb-10">
+      <motion.div style={{ opacity: fade }} className="container-x grid gap-6 pt-24 pb-4 md:grid-cols-12 md:items-end md:gap-8 md:pb-6">
         <div className="md:col-span-7 lg:col-span-6">
-          <p className="eyebrow mb-5 animate-fade-up text-white/85 [animation-delay:0.3s]">{hero.eyebrow}</p>
-          <h1 className="animate-fade-up text-h2 [animation-delay:0.4s]">
+          <p className="eyebrow mb-4 animate-fade-up text-white/85 [animation-delay:0.3s]">{hero.eyebrow}</p>
+          <h1 className="animate-fade-up text-[clamp(1.85rem,min(4.4vw,6.8svh),4.25rem)] leading-[1.04] [animation-delay:0.4s]">
             Tailor-made safaris, Kilimanjaro climbs and Zanzibar escapes
           </h1>
         </div>
         <div className="animate-fade-up md:col-span-5 md:col-start-8 lg:col-span-4 lg:col-start-9 [animation-delay:0.55s]">
-          <p className="text-lg leading-relaxed text-white/85">{hero.intro}</p>
-          <div className="mt-7 flex flex-wrap gap-3">
+          <p className="text-[clamp(1rem,min(1.35vw,2.6svh),1.2rem)] leading-relaxed text-white/85">{hero.intro}</p>
+          <div className="mt-5 flex flex-wrap gap-3 lg:mt-6">
             <OpenPlannerButton size="lg" arrow />
             <ButtonLink href="/safaris" variant="outline-light" size="lg">
               Explore safaris
@@ -62,13 +62,13 @@ export function Hero() {
           initial={{ y: "60%", opacity: 0 }}
           animate={{ y: "0%", opacity: 1 }}
           transition={{ duration: 1.4, ease, delay: 0.2 }}
-          className="container-x -mb-[0.16em] font-display text-display font-normal tracking-[-0.06em] whitespace-nowrap text-white/95 select-none"
+          className="container-x pb-[0.06em] font-display text-[min(17vw,23svh)] leading-[0.78] font-normal tracking-[-0.06em] whitespace-nowrap text-white/95 select-none"
         >
           {hero.titleAccent}
         </motion.p>
         <a
           href="#pillars"
-          className="absolute right-5 bottom-[38%] hidden items-center gap-2.5 text-sm text-white md:right-10 md:flex xl:right-16"
+          className="absolute right-24 bottom-[45%] hidden items-center gap-2.5 text-sm text-white md:flex xl:right-28"
         >
           <span className="border-b-2 border-dotted border-white pb-0.5">Discover</span>
           <ArrowDown aria-hidden className="size-4 animate-bounce" />
