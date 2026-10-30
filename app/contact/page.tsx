@@ -1,18 +1,17 @@
-import { Mail, MapPin, Phone } from "lucide-react";
-import { siteConfig, whatsappLink } from "@/config/site";
+import { Mail, MapPin } from "lucide-react";
+import { siteConfig } from "@/config/site";
 import { images } from "@/data/images";
 import { buildMetadata } from "@/lib/seo";
 import { PageHero } from "@/components/sections/PageHero";
 import { DetailSection } from "@/components/sections/DetailSection";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { MapPlaceholder } from "@/components/sections/MapPlaceholder";
-import { SocialIcon } from "@/components/ui/SocialIcon";
 import { OpenPlannerButton } from "@/components/ui/OpenPlannerButton";
 import { ImageReveal } from "@/components/ui/Motion";
 
 export const metadata = buildMetadata({
   title: "Contact us",
-  description: "Talk to a Tanzania specialist by email, phone or WhatsApp, or send us a message. We reply within one working day.",
+  description: "Talk to a Tanzania specialist by email or send us a message. We reply within one working day.",
   path: "/contact",
   image: images.specialist,
 });
@@ -21,8 +20,6 @@ export default function ContactPage() {
   const { contact } = siteConfig;
   const items = [
     { Icon: Mail, label: "Email", value: contact.email, href: `mailto:${contact.email}` },
-    { Icon: Phone, label: "Telephone", value: contact.phone, href: `tel:${contact.phone}` },
-    { Icon: null, label: "WhatsApp", value: contact.whatsappDisplay, href: whatsappLink() },
     { Icon: MapPin, label: "Office", value: contact.address, href: undefined },
   ];
   return (
@@ -50,11 +47,7 @@ export default function ContactPage() {
           <ul className="mt-12 grid gap-px border border-line bg-line sm:grid-cols-2">
             {items.map(({ Icon, label, value, href }) => (
               <li key={label} className="flex items-start gap-4 bg-snow p-5">
-                {Icon ? (
-                  <Icon aria-hidden className="mt-0.5 size-5 shrink-0 text-savanna-ink" />
-                ) : (
-                  <SocialIcon name="whatsapp" className="mt-0.5 size-5 shrink-0 text-savanna-ink" />
-                )}
+                <Icon aria-hidden className="mt-0.5 size-5 shrink-0 text-savanna-ink" />
                 <div>
                   <p className="text-sm text-stone">{label}</p>
                   {href ? (
@@ -73,8 +66,8 @@ export default function ContactPage() {
           <ContactForm />
         </div>
       </section>
-      <DetailSection tone="sand" eyebrow="Find us" title="Our base in Arusha">
-        <MapPlaceholder stops={["Arusha office", "Kilimanjaro Airport (JRO)"]} title="Find us" />
+      <DetailSection tone="sand" eyebrow="Find us" title="Our base in Dar es Salaam">
+        <MapPlaceholder stops={["Dar es Salaam office", "Julius Nyerere International Airport (DAR)"]} title="Find us" />
       </DetailSection>
     </>
   );

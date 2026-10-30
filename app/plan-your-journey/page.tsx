@@ -1,7 +1,7 @@
 import { Clock, MessageCircle, ShieldCheck } from "lucide-react";
 import { images } from "@/data/images";
 import { buildMetadata } from "@/lib/seo";
-import { siteConfig, whatsappLink } from "@/config/site";
+import { siteConfig } from "@/config/site";
 import { PageHero } from "@/components/sections/PageHero";
 import { TripPlanner } from "@/components/planner/TripPlanner";
 
@@ -38,11 +38,7 @@ export default function PlanYourJourneyPage() {
                 title: "Prefer to talk?",
                 body: (
                   <>
-                    Message us on{" "}
-                    <a href={whatsappLink()} className="underline underline-offset-2">
-                      WhatsApp
-                    </a>{" "}
-                    or email{" "}
+                    Email{" "}
                     <a href={`mailto:${siteConfig.contact.email}`} className="underline underline-offset-2">
                       {siteConfig.contact.email}
                     </a>

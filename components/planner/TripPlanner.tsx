@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { FormProvider, useForm, type FieldErrors } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, MotionConfig, motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import {
   plannerDefaults,
@@ -170,7 +170,7 @@ export function TripPlanner({
       }
       setReference(data.reference ?? "");
     } catch {
-      setSubmitError("We couldn't send your request just now. Please try again, or message us on WhatsApp.");
+      setSubmitError("We couldn't send your request just now. Please try again, or email us directly.");
     } finally {
       setSubmitting(false);
     }
@@ -184,6 +184,7 @@ export function TripPlanner({
   const last = step === steps.length - 1;
 
   return (
+    <MotionConfig reducedMotion="user">
     <FormProvider {...methods}>
       <form
         noValidate
@@ -241,5 +242,6 @@ export function TripPlanner({
         </div>
       </form>
     </FormProvider>
+    </MotionConfig>
   );
 }

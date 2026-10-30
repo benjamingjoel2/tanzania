@@ -10,6 +10,8 @@ export interface ImageAsset {
   alt: string;
   /** Local placeholder artwork used if the remote image fails to load. */
   theme?: PlaceholderTheme;
+  /** True while this is illustrated artwork standing in for a photo still to be sourced (see IMAGES-NEEDED.md). */
+  placeholder?: boolean;
 }
 
 export type Region =
@@ -146,16 +148,6 @@ export interface Stay {
   features: string[];
   image: ImageAsset;
   /** Placeholder partner property: rename to a real partner before launch. */
-  placeholder: true;
-}
-
-export interface Testimonial {
-  name: string;
-  from: string;
-  trip: string;
-  quote: string;
-  rating: 5 | 4;
-  /** Every seed testimonial is a placeholder and must be replaced with real, permissioned reviews. */
   placeholder: true;
 }
 

@@ -1,10 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { MotionConfig, motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
-import { siteConfig, whatsappLink } from "@/config/site";
-import { Button, ButtonLink, buttonClasses } from "@/components/ui/Button";
-import { SocialIcon } from "@/components/ui/SocialIcon";
+import { Button, ButtonLink } from "@/components/ui/Button";
 import { DoorMotif } from "@/components/ui/DoorMotif";
 import { cn } from "@/lib/utils";
 
@@ -21,6 +19,7 @@ export function Confirmation({
 }) {
   const firstName = name?.trim().split(/\s+/)[0];
   return (
+    <MotionConfig reducedMotion="user">
     <motion.div
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
@@ -54,14 +53,6 @@ export function Confirmation({
         ))}
       </ol>
       <div className="mt-10 flex flex-wrap justify-center gap-3">
-        <a
-          href={whatsappLink(`Hello ${siteConfig.name}! I've just sent a journey request${reference ? ` (ref ${reference})` : ""}.`)}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={buttonClasses("dark", "md")}
-        >
-          <SocialIcon name="whatsapp" className="size-4" /> Say hello on WhatsApp
-        </a>
         {variant === "modal" ? (
           <Button variant="outline" onClick={onDone}>
             Keep exploring
@@ -73,5 +64,6 @@ export function Confirmation({
         )}
       </div>
     </motion.div>
+    </MotionConfig>
   );
 }

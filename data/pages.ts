@@ -17,12 +17,7 @@ export const aboutContent = {
     { title: "One specialist, start to finish", body: "No call centres and no hand-offs. The person who plans your trip is the one you can message while you are on it." },
     { title: "Honest advice", body: "We will tell you when a cheaper camp is just as good, when a route is too rushed, or when another month would suit you better." },
     { title: "Fair to everyone", body: "Transparent prices for you, fair wages for guides and porters, and partners who invest in their communities." },
-    { title: "Expert on the ground", body: "Local guides, trusted camps and 24/7 WhatsApp support from a team who know the country intimately." },
-  ],
-  team: [
-    { name: "[Founder name]", role: "Founder & head specialist", image: images.guide },
-    { name: "[Specialist name]", role: "Safari & Zanzibar specialist", image: images.specialist },
-    { name: "[Specialist name]", role: "Kilimanjaro specialist", image: images.kilimanjaroTrail },
+    { title: "Expert on the ground", body: "Local guides, trusted camps and round-the-clock support from a team who know the country intimately." },
   ],
 };
 

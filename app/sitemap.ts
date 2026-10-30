@@ -8,7 +8,7 @@ const img = (src: string) => src.split("?")[0];
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPaths = [
     "/", "/destinations", "/safaris", "/kilimanjaro", "/zanzibar", "/experiences", "/stays",
-    "/about", "/conservation", "/testimonials", "/faq", "/contact", "/blog", "/plan-your-journey",
+    "/about", "/conservation", "/faq", "/contact", "/blog", "/plan-your-journey",
   ];
   const entries = [
     ...staticPaths.map((p) => ({ url: absoluteUrl(p), priority: p === "/" ? 1 : 0.8 })),

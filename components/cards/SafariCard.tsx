@@ -52,7 +52,7 @@ export function SafariCard({ safari, className }: { safari: Safari; className?: 
               From <Price usd={safari.priceFrom} className="font-display text-2xl text-charcoal" /> per person
             </p>
             <p className="mt-1 text-xs text-stone">
-              ≈ <Price usd={safari.priceFrom * 2} /> for two · international flights excluded
+              From <Price usd={safari.priceFrom * 2} /> for two · international flights excluded
             </p>
           </div>
           <span className="group/btn mt-5 inline-flex items-center gap-2 text-sm font-semibold">

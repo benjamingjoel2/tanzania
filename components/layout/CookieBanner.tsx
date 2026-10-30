@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 
 const KEY = "uhuru:cookie-consent";
@@ -13,6 +12,7 @@ const KEY = "uhuru:cookie-consent";
  */
 export function CookieBanner() {
   const [show, setShow] = useState(false);
+  const [leaving, setLeaving] = useState(false);
 
   useEffect(() => {
     try {
@@ -29,25 +29,24 @@ export function CookieBanner() {
     } catch {
       /* ignore */
     }
-    setShow(false);
+    // Slide out, then unmount.
+    setLeaving(true);
+    window.setTimeout(() => setShow(false), window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 500);
   };
 
   return (
-    <AnimatePresence>
+    <>
       {show && (
-        <motion.div
+        <div
           role="region"
           aria-label="Cookie notice"
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 24 }}
-          transition={{ duration: 0.5, delay: 1.5 }}
-          className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-charcoal/95 text-white backdrop-blur"
+          style={{ animationDelay: "1.5s" }}
+          className={`rise-in transition-[opacity,translate] duration-500 ${leaving ? "translate-y-6 opacity-0" : ""} fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-charcoal/95 text-white backdrop-blur`}
         >
           {/* Slim bar along the bottom edge so it never covers the hero copy. */}
           <div className="container-x flex flex-col gap-3 py-3 pr-20 text-sm sm:flex-row sm:items-center sm:justify-between md:pr-24">
             <p className="text-white/85">
-              We use essential storage for your preferences and would like to use analytics.{" "}
+              We only use essential storage for your preferences. Analytics, if we ever add them, only run with your consent.{" "}
               <Link href="/legal/cookies" className="text-white underline underline-offset-2">
                 Cookie policy
               </Link>
@@ -61,8 +60,8 @@ export function CookieBanner() {
               </Button>
             </div>
           </div>
-        </motion.div>
+        </div>
       )}
-    </AnimatePresence>
+    </>
   );
 }

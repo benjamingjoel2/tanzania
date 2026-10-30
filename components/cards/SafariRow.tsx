@@ -22,7 +22,7 @@ export function SafariRow({ safari, flip }: { safari: Safari; flip?: boolean }) 
         <p className="mt-3 text-stone">
           From <Price usd={safari.priceFrom} className="text-2xl tracking-tight text-charcoal" /> per person
           <span className="block text-sm">
-            ≈ <Price usd={safari.priceFrom * 2} /> for two · international flights excluded
+            From <Price usd={safari.priceFrom * 2} /> for two · international flights excluded
           </span>
         </p>
         <ul className="mt-6 space-y-3 border-t border-line pt-6 text-[0.95rem]">

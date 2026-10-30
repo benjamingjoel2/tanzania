@@ -4,10 +4,10 @@ import { RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { OpenPlannerButton } from "@/components/ui/OpenPlannerButton";
 
 const steps = [
-  { title: "Tell us your dream", body: "Share your dates, style and wish list through the planner, by email or on WhatsApp." },
+  { title: "Tell us your dream", body: "Share your dates, style and wish list through the planner or by email." },
   { title: "Meet your specialist", body: "One expert designs your route, chooses the camps and talks you through every option." },
   { title: "Refine it together", body: "We adjust the pace, the stays and the budget until it feels exactly right. No obligation." },
-  { title: "Travel freely", body: "Private guides, seamless transfers and 24/7 WhatsApp support from the same specialist." },
+  { title: "Travel freely", body: "Private guides, seamless transfers and support throughout from the same specialist." },
 ];
 
 function Corners() {

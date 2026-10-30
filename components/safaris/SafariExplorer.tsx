@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, MotionConfig, motion } from "framer-motion";
 import { SlidersHorizontal } from "lucide-react";
 import type { BudgetTier, Safari } from "@/data/types";
 import { SafariCard } from "@/components/cards/SafariCard";
@@ -110,6 +110,7 @@ export function SafariExplorer({ safaris }: { safaris: Safari[] }) {
   };
 
   return (
+    <MotionConfig reducedMotion="user">
     <div>
       <div className="rounded-none bg-white p-6 ring-1 ring-line md:p-8">
         <div className="mb-6 flex items-center gap-2 font-medium">
@@ -154,5 +155,6 @@ export function SafariExplorer({ safaris }: { safaris: Safari[] }) {
         </div>
       )}
     </div>
+    </MotionConfig>
   );
 }
