@@ -1,12 +1,9 @@
 import { aboutContent as a } from "@/data/pages";
-import { testimonials } from "@/data/testimonials";
 import { buildMetadata } from "@/lib/seo";
 import { PageHero } from "@/components/sections/PageHero";
 import { DetailSection } from "@/components/sections/DetailSection";
 import { TrustRow } from "@/components/sections/TrustRow";
-import { TestimonialFeature } from "@/components/sections/TestimonialFeature";
 import { FinalCta } from "@/components/sections/FinalCta";
-import { SmartImage } from "@/components/ui/SmartImage";
 import { DoorMotif } from "@/components/ui/DoorMotif";
 import { ButtonLink } from "@/components/ui/Button";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
@@ -54,25 +51,11 @@ export default function AboutPage() {
           ))}
         </RevealGroup>
       </DetailSection>
-      <DetailSection tone="sand" eyebrow="The team" title="Your specialists" intro="Placeholder profiles: add real names, photos and short bios before launch.">
-        <RevealGroup className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {a.team.map((m, i) => (
-            <RevealItem key={`${m.role}-${i}`}>
-              <div className="relative aspect-[4/5] overflow-hidden rounded-none bg-sand">
-                <SmartImage image={m.image} fill sizes="(min-width: 1024px) 33vw, 50vw" className="object-cover" />
-              </div>
-              <h3 className="mt-5 font-display text-2xl">{m.name}</h3>
-              <p className="text-stone">{m.role}</p>
-            </RevealItem>
-          ))}
-        </RevealGroup>
-      </DetailSection>
       <DetailSection>
         <div className="mx-auto max-w-3xl">
-          <TestimonialFeature testimonial={testimonials[1] ?? testimonials[0]} />
-          <div className="mt-10 flex flex-wrap gap-3">
-            <ButtonLink href="/testimonials" variant="outline" arrow>
-              Traveller stories
+          <div className="flex flex-wrap gap-3">
+            <ButtonLink href="/contact" variant="outline" arrow>
+              Talk to a specialist
             </ButtonLink>
             <ButtonLink href="/conservation" variant="outline">
               Our conservation commitment

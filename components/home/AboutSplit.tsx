@@ -1,6 +1,5 @@
 import { CalendarDays, Map, MessageCircle, Scale, Tent, UserRound } from "lucide-react";
 import { homeContent } from "@/data/home";
-import { siteConfig } from "@/config/site";
 import { ImageReveal, LineDraw, SplitReveal } from "@/components/ui/Motion";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { EyebrowLabel } from "@/components/ui/SectionHeading";
@@ -46,15 +45,6 @@ export function AboutSplit() {
                 <Reveal key={s!.label} delay={0.1 * i} className="border-t border-charcoal/15 pt-5">
                   <p className="text-[clamp(3rem,6vw,5rem)] leading-none tracking-[-0.05em]">{s!.value}</p>
                   <p className="mt-3 text-stone">{s!.label}</p>
-                  {i === 1 && (
-                    <ul className="mt-4 flex flex-wrap gap-2">
-                      {siteConfig.memberships.slice(0, 3).map((m) => (
-                        <li key={m.short} title={m.name} className="border border-dashed border-charcoal/30 px-2.5 py-1 text-xs tracking-wide">
-                          {m.short}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
                 </Reveal>
               ))}
             </div>

@@ -13,7 +13,12 @@ interface MapDestination {
 
 /** Dotted map with glowing pins, paired with a hairline index list. */
 export function DestinationMap({ destinations }: { destinations: MapDestination[] }) {
-  const dots = useMemo(() => mapDots(), []);
+  // All ~1,300 grid dots drawn as one path of zero-length round-capped strokes:
+  // identical to individual <circle r=5.5> elements, but one DOM node instead of 1,300.
+  const dotPath = useMemo(
+    () => mapDots().map(([x, y]) => `M${x.toFixed(1)} ${y.toFixed(1)}h0`).join(""),
+    [],
+  );
   const [active, setActive] = useState<string | null>(null);
   const groups = [...new Set(destinations.map((d) => d.group))];
 
@@ -27,10 +32,8 @@ export function DestinationMap({ destinations }: { destinations: MapDestination[
               <stop offset="1" stopColor="#c69a3d" stopOpacity="0" />
             </radialGradient>
           </defs>
-          <g fill="#24211e" opacity="0.18">
-            {dots.map(([x, y], i) => (
-              <circle key={i} cx={x} cy={y} r={5.5} />
-            ))}
+          <g opacity="0.18">
+            <path d={dotPath} stroke="#24211e" strokeWidth={11} strokeLinecap="round" fill="none" />
           </g>
           {destinations.map((d) => {
             const c = destinationCoords[d.slug];

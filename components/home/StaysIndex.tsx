@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { useInView } from "framer-motion";
 import type { Stay, StayType } from "@/data/types";
 import { SmartImage } from "@/components/ui/SmartImage";
 import { Price } from "@/components/ui/Price";
@@ -26,10 +25,13 @@ interface Group {
 
 function StayGroup({ group, onActive }: { group: Group; onActive: (t: StayType) => void }) {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { margin: "-50% 0px -50% 0px" });
   useEffect(() => {
-    if (inView) onActive(group.type);
-  }, [inView, group.type, onActive]);
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([e]) => e.isIntersecting && onActive(group.type), { rootMargin: "-50% 0px -50% 0px" });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [group.type, onActive]);
   return (
     <div ref={ref} id={`stay-${group.type}`} className="scroll-mt-28 space-y-2.5">
       <p className="eyebrow pb-2 text-white/90 lg:hidden">{group.label}</p>

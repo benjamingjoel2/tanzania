@@ -28,6 +28,7 @@ export function clampDescription(text: string, max = 155) {
 
 /** Share-friendly 1200×630 crop of an Unsplash photo. */
 function shareImage(image: ImageAsset) {
+  if (image.placeholder) return defaultOgImage;
   if (!image.src.startsWith("https://images.unsplash.com/")) return { url: image.src, alt: image.alt };
   const url = new URL(image.src);
   url.searchParams.set("w", "1200");
@@ -76,12 +77,9 @@ export function absoluteUrl(path: string) {
   return new URL(path, siteConfig.url).toString();
 }
 
-/** True for unreplaced placeholders such as "[EMAIL]" or "https://instagram.com/[HANDLE]". */
-const isPlaceholder = (v: string) => /\[[A-Z]+\]/.test(v);
 
 export function organizationJsonLd() {
   const { contact } = siteConfig;
-  const sameAs = siteConfig.socials.map((s) => s.href).filter((h) => !isPlaceholder(h));
   return [
     {
       "@context": "https://schema.org",
@@ -92,12 +90,10 @@ export function organizationJsonLd() {
       url: siteConfig.url,
       logo: absoluteUrl("/icon.svg"),
       image: absoluteUrl(defaultOgImage.url),
-      ...(isPlaceholder(contact.email) ? {} : { email: contact.email }),
-      ...(isPlaceholder(contact.phone) ? {} : { telephone: contact.phone }),
+      email: contact.email,
       areaServed: { "@type": "Country", name: "Tanzania" },
-      address: { "@type": "PostalAddress", addressLocality: "Arusha", addressCountry: "TZ" },
+      address: { "@type": "PostalAddress", ...contact.postalAddress },
       priceRange: "$$$",
-      ...(sameAs.length ? { sameAs } : {}),
     },
     {
       "@context": "https://schema.org",

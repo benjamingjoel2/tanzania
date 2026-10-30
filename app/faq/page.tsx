@@ -43,7 +43,7 @@ export default function FaqPage() {
           mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
         }}
       />
-      <FinalCta title="Still have questions?" body="Your specialist is a message away, by email, phone or WhatsApp." />
+      <FinalCta title="Still have questions?" body="Your specialist is a message away: send us a note and we reply within one working day." />
     </>
   );
 }

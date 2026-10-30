@@ -31,7 +31,7 @@ export function StepBudget() {
               <span className="block font-display text-2xl">{tier.label}</span>
               {tier.perDayFrom > 0 && (
                 <span className="mt-1 block text-sm font-medium text-ocean-ink">
-                  ≈ <Price usd={tier.perDayFrom} />–<Price usd={tier.perDayTo} /> pp / day
+                  From <Price usd={tier.perDayFrom} /> pp / day
                 </span>
               )}
               <span className="mt-2 block text-sm leading-relaxed text-stone">{tier.description}</span>

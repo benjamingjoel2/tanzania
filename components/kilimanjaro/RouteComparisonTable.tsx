@@ -35,7 +35,7 @@ export function RouteComparisonTable({ climbs }: { climbs: Climb[] }) {
               <td className="px-5 py-5">{c.crowds}</td>
               <td className="px-5 py-5">{c.accommodation}</td>
               <td className="px-5 py-5 font-medium">
-                <Price usd={c.priceFrom} />
+                From <Price usd={c.priceFrom} />
               </td>
             </tr>
           ))}

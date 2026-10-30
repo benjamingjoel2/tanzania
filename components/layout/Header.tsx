@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
@@ -67,16 +66,11 @@ export function Header({
                 const hasMega =
                   item.href === "/destinations" && destinationGroups.length > 0;
                 return (
-                  <motion.li
+                  <li
                     key={item.href}
                     onMouseEnter={() => setMegaOpen(hasMega)}
-                    initial={{ opacity: 0, y: -12 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{
-                      duration: 0.6,
-                      delay: 0.1 * i,
-                      ease: [0.22, 1, 0.36, 1],
-                    }}
+                    className="nav-drop"
+                    style={{ animationDelay: `${0.1 * i}s` }}
                   >
                     <Link
                       href={item.href}
@@ -87,7 +81,7 @@ export function Header({
                     >
                       {item.label}
                     </Link>
-                  </motion.li>
+                  </li>
                 );
               })}
             </ul>
@@ -121,14 +115,12 @@ export function Header({
         </div>
 
         {/* Destinations mega menu (desktop) */}
-        <AnimatePresence>
-          {megaOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.25 }}
-              className="absolute inset-x-0 top-full hidden border-t border-line bg-snow text-charcoal shadow-xl xl:block"
+        {destinationGroups.length > 0 && (
+            <div
+              className={cn(
+                "absolute inset-x-0 top-full hidden border-t border-line bg-snow text-charcoal shadow-xl transition-[opacity,translate,visibility] duration-[250ms] xl:block",
+                megaOpen ? "visible translate-y-0 opacity-100" : "invisible -translate-y-2 opacity-0",
+              )}
               onKeyDown={(e) => e.key === "Escape" && setMegaOpen(false)}
             >
               <div className="container-x grid grid-cols-5 gap-10 py-10">
@@ -152,9 +144,8 @@ export function Header({
                   </div>
                 ))}
               </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+            </div>
+        )}
       </header>
       {/* Rendered outside <header>: its backdrop-filter would trap a fixed overlay. */}
       <MobileMenu open={menuOpen} />

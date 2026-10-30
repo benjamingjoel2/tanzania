@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { BookOpen, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { DoorMotif } from "@/components/ui/DoorMotif";
@@ -12,6 +11,7 @@ export function GuideSignup() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [error, setError] = useState("");
+  const [leaving, setLeaving] = useState(false);
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -28,10 +28,15 @@ export function GuideSignup() {
         body: JSON.stringify({ email: email.trim(), source: "tanzania-safari-guide" }),
       });
       if (!res.ok) throw new Error();
-      setStatus("success");
+      // Fade the form out, then show the confirmation (instant when motion is reduced).
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) setStatus("success");
+      else {
+        setLeaving(true);
+        window.setTimeout(() => setStatus("success"), 300);
+      }
     } catch {
       setStatus("error");
-      setError("Something went wrong. Please try again, or message us on WhatsApp.");
+      setError("Something went wrong. Please try again in a moment.");
     }
   }
 
@@ -55,23 +60,22 @@ export function GuideSignup() {
               </p>
             </div>
             <div aria-live="polite">
-              <AnimatePresence mode="wait">
                 {status === "success" ? (
-                  <motion.div
-                    key="done"
-                    initial={{ opacity: 0, y: 12 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="rounded-none bg-acacia p-8 text-white"
-                  >
+                  <div key="done" style={{ ["--rise" as string]: "12px" }} className="rise-in rounded-none bg-acacia p-8 text-white">
                     <CheckCircle2 aria-hidden className="size-8 text-savanna-light" />
                     <p className="mt-4 font-display text-3xl">Karibu, it&apos;s on its way.</p>
                     <p className="mt-3 text-white/80">
                       Check your inbox for The Tanzania Safari Guide. If it isn&apos;t there in a few minutes, look in
                       your promotions or spam folder.
                     </p>
-                  </motion.div>
+                  </div>
                 ) : (
-                  <motion.form key="form" onSubmit={onSubmit} noValidate exit={{ opacity: 0, y: -12 }}>
+                  <form
+                    key="form"
+                    onSubmit={onSubmit}
+                    noValidate
+                    className={`transition-[opacity,translate] duration-300 ${leaving ? "-translate-y-3 opacity-0" : ""}`}
+                  >
                     <label htmlFor="guide-email" className="mb-2 block text-sm font-medium">
                       Email address
                     </label>
@@ -80,7 +84,7 @@ export function GuideSignup() {
                         id="guide-email"
                         type="email"
                         autoComplete="email"
-                        placeholder="you@example.com"
+                        placeholder="name@email.com"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         aria-invalid={Boolean(error)}
@@ -100,9 +104,8 @@ export function GuideSignup() {
                         One useful email a month at most. Unsubscribe any time.
                       </p>
                     )}
-                  </motion.form>
+                  </form>
                 )}
-              </AnimatePresence>
             </div>
           </div>
         </div>

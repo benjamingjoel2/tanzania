@@ -1,6 +1,5 @@
 /**
  * Single source of truth for brand, contact, currency and navigation settings.
- * Replace the [BRACKETED] placeholders before launch.
  */
 
 export type CurrencyCode = "USD" | "EUR" | "GBP" | "AUD" | "CAD" | "TZS";
@@ -34,7 +33,7 @@ export const siteConfig = {
     process.env.NEXT_PUBLIC_SITE_URL ??
     (process.env.VERCEL_PROJECT_PRODUCTION_URL
       ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-      : "http://localhost:3000"),
+      : "https://uhurujourneys.tourground.com"),
   locale: "en_GB",
 
   brandColors: {
@@ -47,13 +46,15 @@ export const siteConfig = {
   },
 
   contact: {
-    email: "[EMAIL]",
-    phone: "[PHONE]",
-    /** International format, digits only, used for wa.me links. */
-    whatsappNumber: "[NUMBER]",
-    whatsappDisplay: "[WHATSAPP]",
-    address: "Arusha, Tanzania",
-    hours: "Specialists available Mon–Sat, 8am–7pm EAT · 24/7 WhatsApp while you travel",
+    email: "uhurujourneys@tourground.com",
+    /** Business address (premium coworking space in Dar es Salaam). */
+    address: "ZO Spaces Seacliff, Toure Drive, Masaki, Dar es Salaam, Tanzania",
+    postalAddress: {
+      streetAddress: "ZO Spaces Seacliff, Toure Drive, Masaki",
+      addressLocality: "Dar es Salaam",
+      addressCountry: "TZ",
+    },
+    hours: "Specialists available Mon–Sat, 8am–7pm EAT",
   },
 
   /**
@@ -92,7 +93,6 @@ export const siteConfig = {
     company: [
       { label: "Our story", href: "/about" },
       { label: "Conservation", href: "/conservation" },
-      { label: "Testimonials", href: "/testimonials" },
       { label: "Journal", href: "/blog" },
       { label: "FAQ", href: "/faq" },
       { label: "Contact", href: "/contact" },
@@ -104,23 +104,4 @@ export const siteConfig = {
     ],
   },
 
-  socials: [
-    { label: "Instagram", href: "https://instagram.com/[HANDLE]", icon: "instagram" },
-    { label: "Facebook", href: "https://facebook.com/[HANDLE]", icon: "facebook" },
-    { label: "YouTube", href: "https://youtube.com/@[HANDLE]", icon: "youtube" },
-    { label: "LinkedIn", href: "https://linkedin.com/company/[HANDLE]", icon: "linkedin" },
-  ] as const,
-
-  /** Placeholder membership badges. Replace with real logos and member numbers. */
-  memberships: [
-    { short: "TATO", name: "Tanzania Association of Tour Operators", note: "Member no. [TBC]" },
-    { short: "KPAP", name: "Kilimanjaro Porters Assistance Project", note: "Partner for porter welfare" },
-    { short: "TTB", name: "Tanzania Tourist Board", note: "Licensed operator [TBC]" },
-    { short: "ATTA", name: "Africa Travel & Tourism Association", note: "Member [TBC]" },
-  ],
 } as const;
-
-export function whatsappLink(message?: string) {
-  const base = `https://wa.me/${siteConfig.contact.whatsappNumber}`;
-  return message ? `${base}?text=${encodeURIComponent(message)}` : base;
-}

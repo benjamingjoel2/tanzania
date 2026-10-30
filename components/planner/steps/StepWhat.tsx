@@ -30,7 +30,8 @@ export function StepWhat() {
               <span className="relative block aspect-[4/3] w-full bg-sand">
                 <Image
                   src={t.image.src}
-                  loader={unsplashLoader}
+                  loader={t.image.placeholder ? undefined : unsplashLoader}
+                  unoptimized={t.image.placeholder}
                   alt=""
                   fill
                   sizes="(min-width: 768px) 220px, 45vw"

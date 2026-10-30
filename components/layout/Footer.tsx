@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { siteConfig, whatsappLink } from "@/config/site";
-import { SocialIcon } from "@/components/ui/SocialIcon";
+import { siteConfig } from "@/config/site";
 import { DoorMotif } from "@/components/ui/DoorMotif";
 
 const bigLinks = [
@@ -14,7 +13,7 @@ const bigLinks = [
 
 /** Tall dark footer: oversized links, contact columns and a giant wordmark at the base. */
 export function Footer() {
-  const { contact, footerNav, socials, memberships } = siteConfig;
+  const { contact, footerNav } = siteConfig;
   return (
     <footer className="relative overflow-hidden bg-charcoal text-white/75">
       <DoorMotif className="opacity-40" />
@@ -45,16 +44,6 @@ export function Footer() {
                     {contact.email}
                   </a>
                 </li>
-                <li>
-                  <a href={`tel:${contact.phone}`} className="text-white hover:text-savanna-light">
-                    {contact.phone}
-                  </a>
-                </li>
-                <li>
-                  <a href={whatsappLink()} className="text-white hover:text-savanna-light">
-                    WhatsApp {contact.whatsappDisplay}
-                  </a>
-                </li>
                 <li>{contact.address}</li>
               </ul>
               <p className="mt-5 text-sm text-white/65">{contact.hours}</p>
@@ -70,35 +59,8 @@ export function Footer() {
                   </li>
                 ))}
               </ul>
-              <ul className="mt-8 flex gap-2.5">
-                {socials.map((s) => (
-                  <li key={s.label}>
-                    <a
-                      href={s.href}
-                      aria-label={s.label}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="grid size-10 place-items-center rounded-full border border-dashed border-white/40 transition-colors hover:border-solid hover:border-savanna hover:bg-savanna hover:text-charcoal"
-                    >
-                      <SocialIcon name={s.icon} className="size-4" />
-                    </a>
-                  </li>
-                ))}
-              </ul>
             </div>
           </div>
-        </div>
-
-        <div className="mt-16">
-          <p className="eyebrow mb-4 text-white/65">Memberships & partners (placeholders)</p>
-          <ul className="flex flex-wrap gap-3">
-            {memberships.map((m) => (
-              <li key={m.short} title={m.name} className="flex items-center gap-3 border border-dashed border-white/25 px-4 py-2.5">
-                <span className="text-lg tracking-tight text-white">{m.short}</span>
-                <span className="text-xs leading-tight text-white/65">{m.note}</span>
-              </li>
-            ))}
-          </ul>
         </div>
 
         <div className="mt-auto pt-16">

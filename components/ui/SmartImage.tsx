@@ -21,7 +21,7 @@ export function SmartImage({ image, ...props }: SmartImageProps) {
       src={failed ? fallback : image.src}
       alt={image.alt}
       loader={remote ? unsplashLoader : undefined}
-      unoptimized={failed || props.unoptimized}
+      unoptimized={failed || image.placeholder || props.unoptimized}
       onError={() => setFailed(true)}
     />
   );

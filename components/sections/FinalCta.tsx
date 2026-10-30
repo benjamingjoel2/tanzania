@@ -1,14 +1,14 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useCallback, useRef } from "react";
+import { useScrollProgress, type ScrollOffset } from "@/lib/useScrollProgress";
 import { homeContent } from "@/data/home";
-import { whatsappLink } from "@/config/site";
 import { Reveal, SplitReveal } from "@/components/ui/Motion";
 import { OpenPlannerButton } from "@/components/ui/OpenPlannerButton";
-import { SocialIcon } from "@/components/ui/SocialIcon";
-import { buttonClasses } from "@/components/ui/Button";
+import { ButtonLink } from "@/components/ui/Button";
 import { EyebrowLabel } from "@/components/ui/SectionHeading";
+
+const GROW: ScrollOffset = [[0, 1], [0.5, 0.5]];
 
 /** Closing call to action: a circle of colour grows behind the text as it scrolls into view. */
 export function FinalCta({
@@ -19,14 +19,19 @@ export function FinalCta({
   body?: string;
 }) {
   const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "center center"] });
-  const scale = useTransform(scrollYProgress, [0, 1], [0.05, 1]);
+  const circle = useRef<HTMLDivElement>(null);
+  const onProgress = useCallback((p: number) => {
+    if (circle.current) circle.current.style.scale = String(0.05 + 0.95 * p);
+  }, []);
+  useScrollProgress(ref, GROW, onProgress);
 
   return (
     <section ref={ref} className="relative isolate grid min-h-[80svh] place-items-center overflow-hidden bg-acacia-deep text-white">
-      <motion.div
+      <div
+        ref={circle}
         aria-hidden
-        style={{ scale }}
+        data-grow=""
+        style={{ scale: "0.05" }}
         className="absolute top-1/2 left-1/2 -z-10 aspect-square w-[160vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-acacia md:w-[120vw]"
       />
       <div className="container-x py-24 text-center">
@@ -40,14 +45,9 @@ export function FinalCta({
             <OpenPlannerButton size="lg" arrow>
               Plan your journey
             </OpenPlannerButton>
-            <a
-              href={whatsappLink("Hello Uhuru Journeys! I'd like to plan a trip to Tanzania.")}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={buttonClasses("outline-light", "lg")}
-            >
-              <SocialIcon name="whatsapp" className="size-5" /> Chat on WhatsApp
-            </a>
+            <ButtonLink href="/contact" variant="outline-light" size="lg">
+              Contact us
+            </ButtonLink>
           </div>
         </Reveal>
       </div>

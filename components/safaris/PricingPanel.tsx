@@ -2,7 +2,6 @@
 
 import { Price } from "@/components/ui/Price";
 import { OpenPlannerButton } from "@/components/ui/OpenPlannerButton";
-import { whatsappLink } from "@/config/site";
 import type { PlannerPrefill } from "@/lib/planner-schema";
 
 /** Sticky sidebar: guide price, key facts, in-page links and the enquiry call to action. */
@@ -32,7 +31,7 @@ export function PricingPanel({
         </p>
         <p className="mt-2 text-sm text-stone">{unit}</p>
         <p className="mt-1 text-sm text-stone">
-          ≈ <Price usd={priceFrom * 2} /> for two · international flights excluded
+          From <Price usd={priceFrom * 2} /> for two · international flights excluded
         </p>
         <dl className="mt-6 divide-y divide-line border-y border-line text-sm">
           {meta.map((m) => (
@@ -45,14 +44,6 @@ export function PricingPanel({
         <OpenPlannerButton className="mt-6 w-full" size="lg" arrow prefill={prefill}>
           {enquireLabel}
         </OpenPlannerButton>
-        <a
-          href={whatsappLink(prefill?.notes)}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-3 block text-center text-sm underline underline-offset-4"
-        >
-          Or ask a quick question on WhatsApp
-        </a>
         {note && <p className="mt-5 text-xs leading-relaxed text-stone">{note}</p>}
       </div>
       {links.length > 0 && (

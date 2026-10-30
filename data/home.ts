@@ -18,7 +18,7 @@ export const homeContent = {
     { icon: "calendar", value: "15+", label: "years guiding in Tanzania" }, // TODO: verify
     { icon: "tent", value: "60+", label: "hand-picked partner camps & lodges" }, // TODO: verify
     { icon: "scale", value: "Fair", label: "transparent pricing, no hidden extras" },
-    { icon: "message", value: "24/7", label: "WhatsApp support while you travel" },
+    { icon: "message", value: "24/7", label: "Support while you travel" },
     { icon: "map", value: "14", label: "parks & regions covered" },
   ],
   intro: {

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import { MotionConfig, motion } from "framer-motion";
 import { X } from "lucide-react";
 import type { PlannerPrefill } from "@/lib/planner-schema";
 import { TripPlanner } from "./TripPlanner";
@@ -46,6 +46,7 @@ export default function PlannerModal({ prefill, onClose }: { prefill?: PlannerPr
   }, [onClose]);
 
   return (
+    <MotionConfig reducedMotion="user">
     <div className="fixed inset-0 z-[80] flex items-end justify-center sm:items-center sm:p-6">
       <motion.div
         aria-hidden
@@ -83,5 +84,6 @@ export default function PlannerModal({ prefill, onClose }: { prefill?: PlannerPr
         <TripPlanner prefill={prefill} variant="modal" onDone={onClose} />
       </motion.div>
     </div>
+    </MotionConfig>
   );
 }

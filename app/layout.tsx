@@ -5,7 +5,6 @@ import { siteConfig } from "@/config/site";
 import { Providers } from "@/providers/Providers";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { WhatsAppFab } from "@/components/layout/WhatsAppFab";
 import { CookieBanner } from "@/components/layout/CookieBanner";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { defaultOgImage, organizationJsonLd } from "@/lib/seo";
@@ -46,6 +45,11 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en-GB" className={inter.variable}>
+      <head>
+        <noscript>
+          <style>{"[data-rv],[data-rv-item],.split-word,[data-line],.wipe-frame,.wipe-photo{opacity:1!important;transform:none!important}"}</style>
+        </noscript>
+      </head>
       <body className="min-h-dvh">
         <a
           href="#main"
@@ -57,7 +61,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <Header destinationGroups={destinationMenuGroups()} />
           <main id="main">{children}</main>
           <Footer />
-          <WhatsAppFab />
           <CookieBanner />
         </Providers>
         <JsonLd data={organizationJsonLd()} />

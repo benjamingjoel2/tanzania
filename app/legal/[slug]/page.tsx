@@ -1,5 +1,7 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
-import { legalPages } from "@/data/legal";
+import { siteConfig } from "@/config/site";
+import { legalPages, legalUpdated } from "@/data/legal";
 import { images } from "@/data/images";
 import { buildMetadata } from "@/lib/seo";
 import { PageHero } from "@/components/sections/PageHero";
@@ -11,13 +13,37 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps<"/legal/[slug]">) {
   const { slug } = await params;
   const p = legalPages.find((x) => x.slug === slug);
-  // noindex while these hold placeholder text; remove once the real policies are in place.
   return p
-    ? buildMetadata({ title: p.title, description: `${p.title} for Uhuru Journeys.`, path: `/legal/${p.slug}`, noindex: true })
+    ? buildMetadata({ title: p.title, description: `${p.title} for Uhuru Journeys.`, path: `/legal/${p.slug}` })
     : {};
 }
 
 const anchor = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+
+/** Turns the [[email]] / [[privacy]] / [[cookies]] tokens in the legal text into links. */
+function Rich({ text }: { text: string }) {
+  return text.split(/(\[\[(?:email|privacy|cookies)\]\])/).map((part, i) => {
+    if (part === "[[email]]")
+      return (
+        <a key={i} href={`mailto:${siteConfig.contact.email}`}>
+          {siteConfig.contact.email}
+        </a>
+      );
+    if (part === "[[privacy]]")
+      return (
+        <Link key={i} href="/legal/privacy">
+          Privacy policy
+        </Link>
+      );
+    if (part === "[[cookies]]")
+      return (
+        <Link key={i} href="/legal/cookies">
+          Cookie policy
+        </Link>
+      );
+    return part;
+  });
+}
 
 export default async function LegalPage({ params }: PageProps<"/legal/[slug]">) {
   const { slug } = await params;
@@ -29,7 +55,7 @@ export default async function LegalPage({ params }: PageProps<"/legal/[slug]">) 
         size="sm"
         eyebrow="Legal"
         title={p.title}
-        intro="Placeholder text. Have this page drafted or reviewed by a qualified professional before launch."
+        intro={`Last updated ${legalUpdated}.`}
         image={images.zebra}
         crumbs={[{ label: p.title, href: `/legal/${p.slug}` }]}
       />
@@ -53,7 +79,21 @@ export default async function LegalPage({ params }: PageProps<"/legal/[slug]">) 
           {p.sections.map((s) => (
             <section key={s.heading} id={anchor(s.heading)} className="scroll-mt-28">
               <h2 className="!mt-0">{s.heading}</h2>
-              <p>{s.body}</p>
+              {s.body.map((b, i) =>
+                Array.isArray(b) ? (
+                  <ul key={i}>
+                    {b.map((li) => (
+                      <li key={li}>
+                        <Rich text={li} />
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p key={i}>
+                    <Rich text={b} />
+                  </p>
+                ),
+              )}
             </section>
           ))}
         </article>

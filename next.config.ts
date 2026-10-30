@@ -11,6 +11,9 @@ const nextConfig: NextConfig = {
     // Set NEXT_PUBLIC_IMAGE_UNOPTIMIZED=1 where the server cannot reach the image host.
     unoptimized: process.env.NEXT_PUBLIC_IMAGE_UNOPTIMIZED === "1",
   },
+  async redirects() {
+    return [{ source: "/testimonials", destination: "/about", permanent: true }];
+  },
   turbopack: {
     rules: {
       "*.css": {
