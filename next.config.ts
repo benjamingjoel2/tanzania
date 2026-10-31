@@ -3,6 +3,8 @@ import createMDX from "@next/mdx";
 
 const nextConfig: NextConfig = {
   cacheComponents: true,
+  // One root layout per language (app/(en), app/fr, app/de, app/es), so unmatched URLs need a global 404.
+  experimental: { globalNotFound: true },
   partialPrefetching: true,
   pageExtensions: ["ts", "tsx", "md", "mdx"],
   images: {

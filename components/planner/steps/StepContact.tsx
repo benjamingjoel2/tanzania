@@ -74,7 +74,7 @@ export function StepContact() {
       <fieldset>
         <Legend>How should we get in touch?</Legend>
         <div className="flex flex-wrap gap-2.5">
-          {contactMethods.map((m) => {
+          {contactMethods.map(({ id: m, label }) => {
             const checked = methods.includes(m);
             return (
               <label
@@ -85,7 +85,7 @@ export function StepContact() {
                 )}
               >
                 <input type="checkbox" value={m} className="sr-only" {...register("contactMethods")} />
-                {m}
+                {label}
               </label>
             );
           })}

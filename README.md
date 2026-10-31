@@ -28,6 +28,15 @@ npm run lint
 | `app/api/plan`, `app/api/contact`, `app/api/newsletter` | Form endpoints. They validate and log the payload; each has a `TODO` for email/CRM integration |
 | `components/` | `layout/` (header, footer, menu), `home/` (homepage sections), `sections/` (shared page sections), `cards/`, `planner/` (trip planner), `ui/` (buttons, motion primitives) |
 
+## Languages (EN · FR · DE · ES)
+
+English is the source and lives at the root URLs; French, German and Spanish are pre-rendered under `/fr`, `/de`, `/es` with no translation library in the browser.
+
+- `npm run build` / `npm run dev` first run `scripts/i18n.mjs`, which copies `app/(en)` to `app/{fr,de,es}` and `components`, `data`, `config`, `lib`, `providers` to `i18n/gen/<locale>`, replacing visible English strings with the translations in `i18n/{fr,de,es}.json` and prefixing internal links. Generated folders are git-ignored; the build fails if a string has no translation (`npm run i18n -- --missing` lists them).
+- Journal translations live in `content/blog-{fr,de,es}` (same file names as `content/blog`).
+- `components/layout/LanguageSwitcher.tsx` (header and mobile menu) links to the same page in each language; no automatic redirects. `lib/i18n-paths.ts` builds hreflang alternates (used by `lib/seo.ts` and `app/sitemap.ts`).
+- When you add or change English copy, add the translation to all three JSON files.
+
 ## Before launch: placeholders to replace
 
 - **Contact details:** set in `config/site.ts`: `uhurujourneys@tourground.com` and the business address (ZO Spaces Seacliff, Masaki, Dar es Salaam). No phone, WhatsApp or social links by owner decision.

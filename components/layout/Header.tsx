@@ -8,6 +8,7 @@ import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 import { Logo } from "./Logo";
 import { CurrencySwitcher } from "./CurrencySwitcher";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 import { MobileMenu } from "./MobileMenu";
 import { OpenPlannerButton } from "@/components/ui/OpenPlannerButton";
 
@@ -88,6 +89,7 @@ export function Header({
           </nav>
 
           <div className="flex items-center gap-3">
+            <LanguageSwitcher light={!solid} className="hidden lg:flex" />
             <CurrencySwitcher
               className="hidden sm:inline-flex"
               id="currency-header"

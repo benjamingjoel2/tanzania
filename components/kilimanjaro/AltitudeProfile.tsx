@@ -1,4 +1,5 @@
 import type { ItineraryDay } from "@/data/types";
+import { locale } from "@/lib/locale";
 
 /** Simple SVG altitude profile: sleeping altitude and day high points. */
 export function AltitudeProfile({ days, startAltitude }: { days: ItineraryDay[]; startAltitude: number }) {
@@ -28,12 +29,12 @@ export function AltitudeProfile({ days, startAltitude }: { days: ItineraryDay[];
   return (
     <figure className="rounded-none bg-white p-4 ring-1 ring-line md:p-6">
       <svg viewBox={`0 0 ${W} ${H}`} className="w-full" role="img" aria-labelledby="alt-title">
-        <title id="alt-title">{`Altitude profile: ${pts.map((p) => `${p.label} ${p.high.toLocaleString("en-GB")} m`).join(", ")}`}</title>
+        <title id="alt-title">{`Altitude profile: ${pts.map((p) => `${p.label} ${p.high.toLocaleString((locale === "en" ? "en-GB" : locale))} m`).join(", ")}`}</title>
         {[2000, 3000, 4000, 5000, 6000].map((a) => (
           <g key={a}>
             <line x1={pad.l} x2={W - pad.r} y1={y(a)} y2={y(a)} stroke="#ddd4c4" strokeDasharray="3 4" />
             <text x={pad.l - 10} y={y(a) + 4} textAnchor="end" fontSize="11" fill="#6b645c">
-              {a.toLocaleString("en-GB")} m
+              {a.toLocaleString((locale === "en" ? "en-GB" : locale))} m
             </text>
           </g>
         ))}

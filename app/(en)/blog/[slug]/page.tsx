@@ -9,6 +9,7 @@ import { PostCard } from "@/components/cards/PostCard";
 import { FinalCta } from "@/components/sections/FinalCta";
 import { Chips } from "@/components/ui/Chips";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { locale } from "@/lib/locale";
 
 export function generateStaticParams() {
   return posts.map((p) => ({ slug: p.slug }));
@@ -34,7 +35,12 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
   const { slug } = await params;
   const p = getPost(slug);
   if (!p) notFound();
-  const { default: Body } = await import(`@/content/blog/${p.slug}.mdx`);
+  // English posts live in content/blog, translations in content/blog-<locale> (same slugs).
+  const { default: Body } =
+    locale === "fr" ? await import(`@/content/blog-fr/${p.slug}.mdx`)
+    : locale === "de" ? await import(`@/content/blog-de/${p.slug}.mdx`)
+    : locale === "es" ? await import(`@/content/blog-es/${p.slug}.mdx`)
+    : await import(`@/content/blog/${p.slug}.mdx`);
   const more = posts.filter((o) => o.slug !== p.slug).slice(0, 3);
 
   return (
@@ -74,7 +80,7 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
           description: p.excerpt,
           datePublished: p.date,
           image: p.image.src,
-          inLanguage: "en-GB",
+          inLanguage: locale,
           keywords: p.tags.join(", "),
           author: { "@type": "Organization", name: siteConfig.name, url: siteConfig.url },
           publisher: { "@type": "Organization", name: siteConfig.name },

@@ -1,8 +1,9 @@
 import { BedDouble, Footprints, Mountain, Utensils } from "lucide-react";
 import type { ItineraryDay } from "@/data/types";
 import { Reveal } from "@/components/ui/Reveal";
+import { locale } from "@/lib/locale";
 
-const fmt = (m: number) => `${m.toLocaleString("en-GB")} m`;
+const fmt = (m: number) => `${m.toLocaleString((locale === "en" ? "en-GB" : locale))} m`;
 
 export function ItineraryTimeline({ days }: { days: ItineraryDay[] }) {
   return (

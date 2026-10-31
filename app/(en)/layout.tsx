@@ -1,7 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 import { siteConfig } from "@/config/site";
+import { locale } from "@/lib/locale";
+import { OG_LOCALES } from "@/lib/i18n-paths";
 import { Providers } from "@/providers/Providers";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -23,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: siteConfig.name,
-    locale: siteConfig.locale,
+    locale: OG_LOCALES[locale],
     images: [defaultOgImage],
   },
   twitter: { card: "summary_large_image", images: [defaultOgImage.url] },
@@ -44,7 +46,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en-GB" className={inter.variable}>
+    <html lang={locale} className={inter.variable}>
       <head>
         <noscript>
           <style>{"[data-rv],[data-rv-item],.split-word,[data-line],.wipe-frame,.wipe-photo{opacity:1!important;transform:none!important}"}</style>

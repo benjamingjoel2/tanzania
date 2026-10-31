@@ -1,0 +1,18 @@
+{
+ "locales": [
+  "en",
+  "fr",
+  "de",
+  "es"
+ ],
+ "defaultLocale": "en",
+ "routeSrc": "app/(en)",
+ "shared": [
+  "components",
+  "data",
+  "config",
+  "lib",
+  "providers"
+ ],
+ "genDir": "i18n/gen"
+}

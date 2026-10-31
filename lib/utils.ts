@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
 import { extendTailwindMerge } from "tailwind-merge";
+import { locale } from "@/lib/locale";
 
 // Teach tailwind-merge about the custom type scale in globals.css so that
 // `text-h2` is treated as a font size, not a colour.
@@ -17,7 +18,7 @@ export const MONTHS = [
 ] as const;
 
 export function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString("en-GB", {
+  return new Date(iso).toLocaleDateString((locale === "en" ? "en-GB" : locale), {
     day: "numeric",
     month: "long",
     year: "numeric",
