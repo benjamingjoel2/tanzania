@@ -12,6 +12,11 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Generated translations (scripts/i18n.mjs)
+    "app/fr/**",
+    "app/de/**",
+    "app/es/**",
+    "i18n/gen/**",
   ]),
 ]);
 

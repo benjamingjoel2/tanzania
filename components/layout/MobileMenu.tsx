@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { siteConfig } from "@/config/site";
 import { CurrencySwitcher } from "./CurrencySwitcher";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 import { OpenPlannerButton } from "@/components/ui/OpenPlannerButton";
 
 /** Full-screen dark menu that drops down with a slight overshoot; links rise in turn. */
@@ -53,6 +54,7 @@ export function MobileMenu({ open }: { open: boolean }) {
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <OpenPlannerButton variant="primary" size="lg" arrow className="w-full sm:w-auto" />
               <CurrencySwitcher id="currency-mobile" />
+              <LanguageSwitcher light className="text-[0.8125rem]" />
             </div>
             <div className="mt-auto pt-10 text-sm text-white/60">
               <a href={`mailto:${siteConfig.contact.email}`} className="underline underline-offset-4">

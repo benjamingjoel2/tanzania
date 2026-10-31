@@ -23,7 +23,7 @@ import { StepBudget } from "./steps/StepBudget";
 import { StepWho } from "./steps/StepWho";
 import { StepContact } from "./steps/StepContact";
 
-const STORAGE_KEY = "uhuru:trip-planner:v1";
+const STORAGE_KEY = "uhuru:trip-planner:v2";
 
 const steps = [
   { Component: StepWhen, title: "When are you thinking of travelling?" },

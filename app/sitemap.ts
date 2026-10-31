@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
 import { climbs, destinations, experiences, posts, safaris, stays } from "@/lib/content";
 import { absoluteUrl } from "@/lib/seo";
+import { legalPages } from "@/data/legal";
+import { LOCALES, localePath, languageAlternates } from "@/lib/i18n-paths";
 
 // Image URLs without query strings: Next writes them into the XML unescaped.
 const img = (src: string) => src.split("?")[0];
@@ -9,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticPaths = [
     "/", "/destinations", "/safaris", "/kilimanjaro", "/zanzibar", "/experiences", "/stays",
     "/about", "/conservation", "/faq", "/contact", "/blog", "/plan-your-journey",
+    ...legalPages.map((l) => `/legal/${l.slug}`),
   ];
   const entries = [
     ...staticPaths.map((p) => ({ url: absoluteUrl(p), priority: p === "/" ? 1 : 0.8 })),
@@ -19,5 +22,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...stays.map((s) => ({ url: absoluteUrl(`/stays/${s.slug}`), priority: 0.5, images: [img(s.image.src)] })),
     ...posts.map((p) => ({ url: absoluteUrl(`/blog/${p.slug}`), priority: 0.6, lastModified: p.date, images: [img(p.image.src)] })),
   ];
-  return entries;
+  // Every page in every language, each with its hreflang alternates.
+  return entries.flatMap((e) => {
+    const path = new URL(e.url).pathname;
+    const languages = Object.fromEntries(Object.entries(languageAlternates(path)).map(([k, v]) => [k, absoluteUrl(v)]));
+    return LOCALES.map((l) => ({ ...e, url: absoluteUrl(localePath(path, l)), alternates: { languages } }));
+  });
 }

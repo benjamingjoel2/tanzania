@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/config/site";
+import { locale } from "@/lib/locale";
+import { OG_LOCALES, languageAlternates, localePath } from "@/lib/i18n-paths";
 import type { ImageAsset } from "@/data/types";
 
 /** Branded fallback share image (1200×630) for pages without their own photo. */
@@ -57,15 +59,16 @@ export function buildMetadata({
   return {
     title,
     description: desc,
-    alternates: { canonical: path },
+    // `path` is the English path; each language copy of this module points it at its own URL.
+    alternates: { canonical: localePath(path, locale), languages: languageAlternates(path) },
     robots: noindex ? { index: false, follow: true } : undefined,
     openGraph: {
       title,
       description: desc,
-      url: path,
+      url: localePath(path, locale),
       type,
       siteName: siteConfig.name,
-      locale: siteConfig.locale,
+      locale: OG_LOCALES[locale],
       images: [og],
       ...(type === "article" ? { publishedTime, authors, tags } : {}),
     },
@@ -101,7 +104,7 @@ export function organizationJsonLd() {
       "@id": absoluteUrl("/#website"),
       name: siteConfig.name,
       url: siteConfig.url,
-      inLanguage: "en-GB",
+      inLanguage: locale,
       publisher: { "@id": absoluteUrl("/#organization") },
     },
   ];

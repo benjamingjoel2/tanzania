@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { addOns, budgetTiers, contactMethods, tripTypes } from "@/data/planner";
+import { addOns, budgetTiers, contactMethodIds, tripTypes } from "@/data/planner";
 
 const tripTypeIds = tripTypes.map((t) => t.id) as [string, ...string[]];
 const budgetIds = budgetTiers.map((b) => b.id) as [string, ...string[]];
@@ -48,7 +48,7 @@ export const plannerSchema = z.object({
     .string()
     .trim()
     .regex(/^[0-9 ()-]{6,20}$/, "Please enter a valid phone number"),
-  contactMethods: z.array(z.enum(contactMethods)).min(1, "Choose at least one way to reach you"),
+  contactMethods: z.array(z.enum(contactMethodIds)).min(1, "Choose at least one way to reach you"),
   notes: z.string().max(2000).optional(),
   consent: z.literal(true, { error: "Please agree so we can contact you about your trip" }),
 });
@@ -79,7 +79,7 @@ export const plannerDefaults: Partial<PlannerValues> = {
   email: "",
   phoneCode: "+44",
   phone: "",
-  contactMethods: ["Email"],
+  contactMethods: ["email"],
   notes: "",
 };
 

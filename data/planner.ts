@@ -60,7 +60,11 @@ export const addOns = [
   { id: "gear-rental", label: "Kilimanjaro gear rental", description: "Sleeping bags, jackets, poles and more" },
 ] as const;
 
-export const contactMethods = ["Email", "WhatsApp", "Telephone"] as const;
+export const contactMethods = [
+  { id: "email", label: "Email" },
+  { id: "telephone", label: "Telephone" },
+] as const;
+export const contactMethodIds = ["email", "telephone"] as const;
 
 export const countryCodes = [
   { code: "+1", label: "US/CA +1" },
