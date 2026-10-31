@@ -47,3 +47,10 @@ next-env.d.ts
 /i18n/gen/
 /i18n/strings.json
 /i18n/missing.json
+
+# Cloudflare (OpenNext / Wrangler / Pages build output)
+/.open-next
+/.wrangler
+.dev.vars*
+/dist-pages
+/.cf-bundle
