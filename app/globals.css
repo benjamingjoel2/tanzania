@@ -177,6 +177,9 @@
   & strong {
     font-weight: 600;
   }
+  & .legal-table-wrap {
+    overflow-x: auto;
+  }
   & table {
     width: 100%;
     font-size: 0.95rem;
