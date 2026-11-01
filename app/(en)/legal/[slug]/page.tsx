@@ -80,7 +80,30 @@ export default async function LegalPage({ params }: PageProps<"/legal/[slug]">) 
             <section key={s.heading} id={anchor(s.heading)} className="scroll-mt-28">
               <h2 className="!mt-0">{s.heading}</h2>
               {s.body.map((b, i) =>
-                Array.isArray(b) ? (
+                typeof b === "object" && !Array.isArray(b) ? (
+                  <div key={i} className="legal-table-wrap">
+                    <table>
+                      <thead>
+                        <tr>
+                          {b.table[0].map((h) => (
+                            <th key={h} scope="col">
+                              {h}
+                            </th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {b.table.slice(1).map((r) => (
+                          <tr key={r[0]}>
+                            {r.map((c, j) => (
+                              <td key={j}>{c}</td>
+                            ))}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                ) : Array.isArray(b) ? (
                   <ul key={i}>
                     {b.map((li) => (
                       <li key={li}>
