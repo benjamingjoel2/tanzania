@@ -11,7 +11,6 @@ import { FinalCta } from "@/components/sections/FinalCta";
 import { StayCard } from "@/components/cards/StayCard";
 import { SmartImage } from "@/components/ui/SmartImage";
 import { Price } from "@/components/ui/Price";
-import { DoorMotif } from "@/components/ui/DoorMotif";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { OpenPlannerButton } from "@/components/ui/OpenPlannerButton";
 import { ButtonLink } from "@/components/ui/Button";
@@ -92,7 +91,6 @@ export default function ZanzibarPage() {
             <SmartImage image={z.stoneTown.image} fill sizes="(min-width: 1024px) 45vw, 100vw" className="object-cover" />
           </Reveal>
           <Reveal delay={0.1}>
-            <DoorMotif className="mb-8 max-w-48 text-ocean-light" />
             <p className="eyebrow mb-3 text-ocean-light">UNESCO World Heritage Site</p>
             <h2 className="text-h2">{z.stoneTown.title}</h2>
             {z.stoneTown.body.map((p) => (

@@ -10,7 +10,6 @@ import { AnchorNav } from "@/components/sections/AnchorNav";
 import { DetailBlock, DetailSection } from "@/components/sections/DetailSection";
 import { ItineraryTimeline } from "@/components/sections/ItineraryTimeline";
 import { Inclusions } from "@/components/sections/Inclusions";
-import { MapPlaceholder } from "@/components/sections/MapPlaceholder";
 import { FinalCta } from "@/components/sections/FinalCta";
 import { PricingPanel } from "@/components/safaris/PricingPanel";
 import { SafariRow } from "@/components/cards/SafariRow";
@@ -31,7 +30,6 @@ export async function generateMetadata({ params }: PageProps<"/safaris/[slug]">)
 const links = [
   { id: "overview", label: "Overview" },
   { id: "itinerary", label: "Day by day" },
-  { id: "map", label: "Route map" },
   { id: "included", label: "What's included" },
   { id: "not-included", label: "Not included" },
 ];
@@ -79,9 +77,6 @@ export default async function SafariPage({ params }: PageProps<"/safaris/[slug]"
           </DetailBlock>
           <DetailBlock id="itinerary" title="Day by day">
             <ItineraryTimeline days={s.itinerary} />
-          </DetailBlock>
-          <DetailBlock id="map" title="Route map">
-            <MapPlaceholder stops={["Arrive", ...places]} />
           </DetailBlock>
           <DetailBlock id="included" title="What's included">
             <Inclusions included={s.inclusions} excluded={[]} />

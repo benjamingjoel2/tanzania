@@ -3,9 +3,7 @@ import { siteConfig } from "@/config/site";
 import { images } from "@/data/images";
 import { buildMetadata } from "@/lib/seo";
 import { PageHero } from "@/components/sections/PageHero";
-import { DetailSection } from "@/components/sections/DetailSection";
 import { ContactForm } from "@/components/sections/ContactForm";
-import { MapPlaceholder } from "@/components/sections/MapPlaceholder";
 import { OpenPlannerButton } from "@/components/ui/OpenPlannerButton";
 import { ImageReveal } from "@/components/ui/Motion";
 
@@ -66,9 +64,6 @@ export default function ContactPage() {
           <ContactForm />
         </div>
       </section>
-      <DetailSection tone="sand" eyebrow="Find us" title="Our base in Dar es Salaam">
-        <MapPlaceholder stops={["Dar es Salaam office", "Julius Nyerere International Airport (DAR)"]} title="Find us" />
-      </DetailSection>
     </>
   );
 }

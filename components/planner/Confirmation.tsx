@@ -3,7 +3,6 @@
 import { MotionConfig, motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 import { Button, ButtonLink } from "@/components/ui/Button";
-import { DoorMotif } from "@/components/ui/DoorMotif";
 import { cn } from "@/lib/utils";
 
 export function Confirmation({
@@ -38,7 +37,6 @@ export function Confirmation({
           Your reference: <span className="font-mono font-semibold text-charcoal">{reference}</span>
         </p>
       )}
-      <DoorMotif className="mx-auto my-10 max-w-56" />
       <ol className="mx-auto grid max-w-2xl gap-6 text-left sm:grid-cols-3">
         {[
           ["We listen", "Your specialist reads every detail and may call or message with a few questions."],

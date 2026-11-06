@@ -1,11 +1,9 @@
-import { DoorMotif } from "@/components/ui/DoorMotif";
 import { ButtonLink } from "@/components/ui/Button";
 
 export default function NotFound() {
   return (
     <section className="grid min-h-[80svh] place-items-center bg-acacia-deep px-5 pt-28 pb-20 text-center text-white">
       <div>
-        <DoorMotif className="mx-auto mb-10 max-w-56" />
         <p className="eyebrow text-savanna-light">404 · Off the map</p>
         <h1 className="mt-4 text-h1">This trail has gone cold</h1>
         <p className="mx-auto mt-5 max-w-md text-lg text-white/75">

@@ -4,7 +4,6 @@ import { PageHero } from "@/components/sections/PageHero";
 import { DetailSection } from "@/components/sections/DetailSection";
 import { TrustRow } from "@/components/sections/TrustRow";
 import { FinalCta } from "@/components/sections/FinalCta";
-import { DoorMotif } from "@/components/ui/DoorMotif";
 import { ButtonLink } from "@/components/ui/Button";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 
@@ -28,7 +27,6 @@ export default function AboutPage() {
               <span className="italic">Uhuru</span>, n.
             </h2>
             <p className="mt-4 font-display text-xl text-stone">Swahili: freedom, independence.</p>
-            <DoorMotif className="mt-8 max-w-48" />
           </Reveal>
           <Reveal delay={0.1} className="space-y-6 text-lg leading-relaxed text-stone lg:col-span-7 lg:col-start-6">
             {a.story.map((p, i) => (

@@ -10,7 +10,7 @@ import {
   staysForDestination,
 } from "@/lib/content";
 import { absoluteUrl, buildMetadata } from "@/lib/seo";
-import { destinationCoords } from "@/lib/map";
+import { destinationCoords } from "@/lib/geo";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { PageHero } from "@/components/sections/PageHero";
 import { AnchorNav } from "@/components/sections/AnchorNav";
