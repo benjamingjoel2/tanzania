@@ -1,57 +1,37 @@
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
-import { DoorMotif } from "@/components/ui/DoorMotif";
+import { Logo } from "@/components/layout/Logo";
 
-const bigLinks = [
-  { label: "Destinations", href: "/destinations" },
-  { label: "Safaris", href: "/safaris" },
-  { label: "Kilimanjaro", href: "/kilimanjaro" },
-  { label: "Zanzibar", href: "/zanzibar" },
-  { label: "Experiences", href: "/experiences" },
-  { label: "Plan your journey", href: "/plan-your-journey" },
-];
+const explore = [...siteConfig.footerNav.explore, { label: "Plan your journey", href: "/plan-your-journey" }];
 
-/** Tall dark footer: oversized links, contact columns and a giant wordmark at the base. */
+/** Compact footer: brand, one line, email and address once, three link columns, one base line. */
 export function Footer() {
   const { contact, footerNav } = siteConfig;
+  const columns = [
+    { title: "Explore", links: explore },
+    { title: "Uhuru Journeys", links: footerNav.company },
+    { title: "Legal", links: footerNav.legal },
+  ];
   return (
-    <footer className="relative overflow-hidden bg-charcoal text-white/75">
-      <DoorMotif className="opacity-40" />
-      <div className="container-x flex min-h-[75svh] flex-col pt-20 pb-8">
-        <div className="grid gap-14 lg:grid-cols-12">
-          <nav aria-label="Footer primary" className="lg:col-span-7">
-            <ul className="space-y-1">
-              {bigLinks.map((l) => (
-                <li key={l.href}>
-                  <Link
-                    href={l.href}
-                    className="group inline-flex items-baseline gap-3 text-[clamp(1.9rem,3.6vw,3.25rem)] leading-[1.15] tracking-[-0.035em] text-white transition-colors hover:text-savanna-light"
-                  >
-                    <span className="text-[0.5em] text-savanna-light transition-transform duration-300 group-hover:rotate-90">+</span>
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
+    <footer className="bg-charcoal text-white/75">
+      <div className="container-x pt-16 pb-8 md:pt-20">
+        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-12">
+          <div className="lg:col-span-5">
+            <Logo tone="light" />
+            <p className="mt-5 max-w-sm text-white/75">{siteConfig.tagline}</p>
+            <p className="mt-5">
+              <a href={`mailto:${contact.email}`} className="text-white underline-offset-4 hover:text-savanna-light hover:underline">
+                {contact.email}
+              </a>
+            </p>
+            <address className="mt-2 max-w-xs text-sm not-italic text-white/65">{contact.address}</address>
+          </div>
 
-          <div className="grid gap-10 sm:grid-cols-2 lg:col-span-5">
-            <div>
-              <h2 className="eyebrow mb-5 text-white/65">Talk to a specialist</h2>
-              <ul className="space-y-3">
-                <li>
-                  <a href={`mailto:${contact.email}`} className="text-white hover:text-savanna-light">
-                    {contact.email}
-                  </a>
-                </li>
-                <li>{contact.address}</li>
-              </ul>
-              <p className="mt-5 text-sm text-white/65">{contact.hours}</p>
-            </div>
-            <div>
-              <h2 className="eyebrow mb-5 text-white/65">Uhuru Journeys</h2>
-              <ul className="space-y-3">
-                {footerNav.company.map((l) => (
+          {columns.map((col) => (
+            <nav key={col.title} aria-label={col.title} className="lg:col-span-2 lg:first-of-type:col-start-7">
+              <h2 className="eyebrow mb-4 text-white/65">{col.title}</h2>
+              <ul className="space-y-2.5 text-[0.95rem]">
+                {col.links.map((l) => (
                   <li key={l.href}>
                     <Link href={l.href} className="hover:text-savanna-light">
                       {l.label}
@@ -59,37 +39,15 @@ export function Footer() {
                   </li>
                 ))}
               </ul>
-            </div>
-          </div>
+            </nav>
+          ))}
         </div>
 
-        <div className="mt-auto pt-16">
-          {/* Decorative watermark, drawn as SVG so it isn't treated as body text. */}
-          <svg aria-hidden viewBox="0 0 1000 190" className="w-full text-white/[0.07] md:hidden">
-            <text x="0" y="165" fontSize="235" textLength="1000" lengthAdjust="spacingAndGlyphs" fill="currentColor" letterSpacing="-12">
-              uhuru
-            </text>
-          </svg>
-          <svg aria-hidden viewBox="0 0 1000 120" className="hidden w-full text-white/[0.07] md:block">
-            <text x="0" y="100" fontSize="135" textLength="1000" lengthAdjust="spacingAndGlyphs" fill="currentColor">
-              uhuru journeys
-            </text>
-          </svg>
-        </div>
-
-        <div className="mt-6 flex flex-col gap-4 border-t border-white/10 pt-6 text-sm text-white/65 md:flex-row md:items-center md:justify-between">
+        <div className="mt-14 flex flex-col gap-2 border-t border-white/10 pt-6 text-sm text-white/65 md:flex-row md:items-center md:justify-between">
           <p>
-            © <CopyrightYear /> {siteConfig.name}. All rights reserved.
+            © <CopyrightYear /> {siteConfig.name}
           </p>
-          <ul className="flex flex-wrap gap-x-6 gap-y-2">
-            {footerNav.legal.map((l) => (
-              <li key={l.href}>
-                <Link href={l.href} className="hover:text-white">
-                  {l.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <p>{contact.hours}</p>
         </div>
       </div>
     </footer>

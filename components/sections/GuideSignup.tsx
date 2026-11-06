@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { BookOpen, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { DoorMotif } from "@/components/ui/DoorMotif";
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -44,7 +43,6 @@ export function GuideSignup() {
     <section className="section-y bg-sand/60" aria-labelledby="guide-heading">
       <div className="container-x">
         <div className="relative overflow-hidden rounded-none bg-snow px-6 py-14 ring-1 ring-line md:px-16 md:py-20">
-          <DoorMotif className="absolute inset-x-0 top-0 opacity-70" />
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <div>
               <span className="grid size-14 place-items-center rounded-full bg-savanna/20 text-savanna-ink">
