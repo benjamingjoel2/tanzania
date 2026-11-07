@@ -147,9 +147,6 @@ export default function KilimanjaroPage() {
                 {p}
               </p>
             ))}
-            <p className="mt-6 inline-block rounded-lg border border-dashed border-white/30 px-3 py-2 text-xs text-white/70">
-              {k.porterWelfare.note}
-            </p>
           </Reveal>
           <Reveal delay={0.1} className="relative aspect-[4/3] overflow-hidden rounded-none bg-acacia">
             <SmartImage image={k.porterWelfare.image} fill sizes="(min-width: 1024px) 45vw, 100vw" className="object-cover" />

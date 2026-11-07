@@ -41,12 +41,13 @@ English is the source and lives at the root URLs; French, German and Spanish are
 
 - **Contact details:** set in `config/site.ts`: `uhurujourneys@tourground.com` and the business address (ZO Spaces Seacliff, Masaki, Dar es Salaam). No phone, WhatsApp or social links by owner decision.
 - **Exchange rates:** the rates in `config/site.ts` are static approximations. Connect a live FX feed.
+- **Conservation and porters:** confirm the conservation partner and amount behind the per-journey contribution (`data/pages.ts`) and the partnership status with KPAP (`data/kilimanjaro.ts`).
 - **Stays:** the properties in `data/stays.ts` are fictional placeholders. Real partner camps need images the venue allows (see `IMAGES-NEEDED.md`).
 - **Facts to verify:**
   - FAQ answers marked `verify: true` (visa/eVisa, vaccinations, insurance and others) show a "verify" note on the site. Check them against official sources.
   - The trust figures in `data/home.ts` (years, partner camps).
 - **Legal pages:** `data/legal.ts` holds complete drafts (privacy, booking terms, cookies); have a lawyer review them.
-- **Images:** placeholder photography from Unsplash, defined in `data/images.ts`. If a remote image fails to load, branded artwork from `public/placeholders/` appears instead.
+- **Images:** stand-in photography from Unsplash and Wikimedia Commons (in `public/photos`, credited in `public/photos/CREDITS.md`), defined in `data/images.ts`. If a photo fails to load, the slot shows a plain neutral block. Replace with your own photography when you have it.
 - **Domain:** set `NEXT_PUBLIC_SITE_URL` (used for canonical URLs, the sitemap and Open Graph tags) once the real domain is live.
 - **Integrations:** email/CRM for the form endpoints, plus spam protection (Turnstile or honeypot) and rate limiting.
 
