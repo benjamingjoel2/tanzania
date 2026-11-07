@@ -4,6 +4,8 @@ import { images } from "./images";
 export const homeContent = {
   hero: {
     eyebrow: "Tailor-made journeys in Tanzania",
+    titleLead: "Find your",
+    titleAccent: "uhuru",
     intro:
       "Private safaris across the Serengeti, sunrise from the roof of Africa and barefoot days on Zanzibar, shaped around you by one dedicated specialist.",
     image: images.heroSerengeti,
