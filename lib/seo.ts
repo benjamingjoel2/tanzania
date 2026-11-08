@@ -30,7 +30,6 @@ export function clampDescription(text: string, max = 155) {
 
 /** Share-friendly 1200×630 crop of an Unsplash photo. */
 function shareImage(image: ImageAsset) {
-  if (image.placeholder) return defaultOgImage;
   if (!image.src.startsWith("https://images.unsplash.com/")) return { url: image.src, alt: image.alt };
   const url = new URL(image.src);
   url.searchParams.set("w", "1200");

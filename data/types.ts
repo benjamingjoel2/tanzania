@@ -3,15 +3,9 @@
 /** All prices are stored in base USD and converted for display. */
 export type Money = number;
 
-export type PlaceholderTheme = "savanna" | "ocean" | "mountain" | "forest";
-
 export interface ImageAsset {
   src: string;
   alt: string;
-  /** Local placeholder artwork used if the remote image fails to load. */
-  theme?: PlaceholderTheme;
-  /** True while this is illustrated artwork standing in for a photo still to be sourced (see IMAGES-NEEDED.md). */
-  placeholder?: boolean;
 }
 
 export type Region =

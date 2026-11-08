@@ -7,21 +7,24 @@ import { isUnsplash, unsplashLoader } from "@/lib/image-loader";
 
 type SmartImageProps = Omit<ImageProps, "src" | "alt"> & { image: ImageAsset };
 
+/** One neutral sand-coloured pixel: the only thing shown if a photo ever fails to load (never artwork). */
+const FALLBACK = "data:image/gif;base64,R0lGODlhAQABAIAAANnSxQAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==";
+
 /**
- * next/image with a branded local fallback. Remote placeholder photos can be
- * swapped freely; if one fails to load the page still looks intentional.
+ * next/image for the photo registry. Unsplash photos are served from Unsplash's CDN, local
+ * photos (public/photos) through the Next.js optimizer. If a photo fails to load, the slot
+ * becomes a plain neutral block so the layout holds.
  */
 export function SmartImage({ image, ...props }: SmartImageProps) {
   const [failed, setFailed] = useState(false);
-  const fallback = `/placeholders/${image.theme ?? "savanna"}.svg`;
   const remote = !failed && isUnsplash(image.src);
   return (
     <Image
       {...props}
-      src={failed ? fallback : image.src}
+      src={failed ? FALLBACK : image.src}
       alt={image.alt}
       loader={remote ? unsplashLoader : undefined}
-      unoptimized={failed || image.placeholder || props.unoptimized}
+      unoptimized={failed || props.unoptimized}
       onError={() => setFailed(true)}
     />
   );

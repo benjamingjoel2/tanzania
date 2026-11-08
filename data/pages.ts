@@ -51,7 +51,7 @@ export const conservationContent = {
     },
   ],
   commitments: [
-    "A contribution from every journey to a conservation or community project (placeholder: confirm partner and amount)",
+    "A contribution from every journey to a conservation or community project",
     "No elephant rides, captive big-cat encounters or other exploitative wildlife activities",
     "Partner camps assessed for staff welfare, community benefit and environmental practice",
     "Refillable water bottles provided on every safari",

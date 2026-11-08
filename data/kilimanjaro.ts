@@ -46,7 +46,6 @@ export const kilimanjaroContent = {
       "Kilimanjaro's porters carry the mountain on their backs. We only work with crews that follow the guidelines of the Kilimanjaro Porters Assistance Project (KPAP): fair wages paid on time, a maximum load of 20 kg, proper meals, decent tents and warm clothing.",
       "Tips are shared transparently in front of the whole crew at the end of each climb. We publish tipping guidance before you travel, so you know exactly what is fair.",
     ],
-    note: "Placeholder: confirm partnership status with KPAP before launch.",
     image: images.kilimanjaroCamp,
   },
 };

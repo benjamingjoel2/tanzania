@@ -61,8 +61,8 @@ export default async function StayPage({ params }: PageProps<"/stays/[slug]">) {
                 </li>
               ))}
             </ul>
-            <p className="mt-10 inline-block rounded-lg border border-dashed border-line px-3 py-2 text-xs text-stone">
-              Placeholder property: replace with a real partner camp or lodge before launch.
+            <p className="mt-10 text-xs text-stone">
+              This page describes the kind of camp we choose here. Your specialist confirms the exact property when you plan.
             </p>
           </Reveal>
           <Reveal delay={0.1} className="lg:col-span-4 lg:col-start-9">
