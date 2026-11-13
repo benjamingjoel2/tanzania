@@ -101,6 +101,7 @@ export const siteConfig = {
       { label: "Privacy policy", href: "/legal/privacy" },
       { label: "Terms & booking conditions", href: "/legal/terms" },
       { label: "Cookie policy", href: "/legal/cookies" },
+      { label: "Photo credits", href: "/photo-credits" },
     ],
   },
 

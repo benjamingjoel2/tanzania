@@ -47,7 +47,7 @@ English is the source and lives at the root URLs; French, German and Spanish are
   - FAQ answers marked `verify: true` (visa/eVisa, vaccinations, insurance and others) show a "verify" note on the site. Check them against official sources.
   - The trust figures in `data/home.ts` (years, partner camps).
 - **Legal pages:** `data/legal.ts` holds complete drafts (privacy, booking terms, cookies); have a lawyer review them.
-- **Images:** stand-in photography from Unsplash and Wikimedia Commons (in `public/photos`, credited in `public/photos/CREDITS.md`), defined in `data/images.ts`. If a photo fails to load, the slot shows a plain neutral block. Replace with your own photography when you have it.
+- **Images:** stand-in photography from Unsplash and Wikimedia Commons (in `public/photos`, credited in `public/photos/CREDITS.md`, mirrored in `data/photoCredits.ts` and shown on `/photo-credits`, linked from the footer; no credits are shown on the photos), defined in `data/images.ts`. If a photo fails to load, the slot shows a plain neutral block. Replace with your own photography when you have it.
 - **Domain:** set `NEXT_PUBLIC_SITE_URL` (used for canonical URLs, the sitemap and Open Graph tags) once the real domain is live.
 - **Integrations:** email/CRM for the form endpoints, plus spam protection (Turnstile or honeypot) and rate limiting.
 
